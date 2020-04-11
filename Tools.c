@@ -95,9 +95,9 @@ INDEX* CreatIndex(BOOK* arr,int len,INDEX* index,int* cnt,int stat) {
 		free(cnt);
 	}
 }
-LendOutAndReturn* AddNewNode(LendOutAndReturn* head, LendOutAndReturn* newnode) {
+LOAR* AddNewNode(LOAR* head, LOAR* newnode) {
 	if (head->next == NULL) {
-		LendOutAndReturn* realnode = (LendOutAndReturn*)malloc(sizeof(LendOutAndReturn));
+		LOAR* realnode = (LOAR*)malloc(sizeof(LOAR));
 		realnode->next = NULL;
 		realnode->bookID = newnode->bookID;
 		realnode->uid = newnode->uid;
@@ -105,12 +105,12 @@ LendOutAndReturn* AddNewNode(LendOutAndReturn* head, LendOutAndReturn* newnode) 
 		head->next = realnode;
 	}
 	else {
-		LendOutAndReturn* realnode = (LendOutAndReturn*)malloc(sizeof(LendOutAndReturn));
+		LOAR* realnode = (LOAR*)malloc(sizeof(LOAR));
 		realnode->next = NULL;
 		realnode->bookID = newnode->bookID;
 		realnode->uid = newnode->uid;
 		strcpy(realnode->lendout_date, newnode->lendout_date);
-		LendOutAndReturn* ptr_temp = (LendOutAndReturn*)malloc(sizeof(LendOutAndReturn));
+		LOAR* ptr_temp = (LOAR*)malloc(sizeof(LOAR));
 		ptr_temp = head;
 		while (ptr_temp->next != NULL) {
 			ptr_temp = ptr_temp->next;

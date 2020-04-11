@@ -7,7 +7,7 @@ int main()
 	char BookNameIndex[] = {PATHBNI};
 	char AuthorNameIndex[] = { PATHANI };
 	char PressIndex[] = { PATHPI };
-	char LendOutAndReturnFile = { PATHLR };
+	char LOARFile = { PATHLR };
 	/************************************************************/
 	FILE* FPMB = fopen(PATHMB, "ab+");
 	if (FPMB == NULL) {
@@ -93,11 +93,11 @@ int main()
 			RINF = READERInformationLinkedListCreat(FPR, ReaderFile, RINF);
 			FILE* FPLR = fopen(PATHLR, "ab+");
 			if (FPLR == NULL) {
-				printf("Fail to open the file named LendOutAndReturnInformation\n");
+				printf("Fail to open the file named LOARInformation\n");
 				exit(1);
 			}
-			LendOutAndReturn* LRINF = (LendOutAndReturn*)malloc(sizeof(LendOutAndReturn));
-			LRINF = LendOutAndReturnInformationLinkedListCreat(FPLR, LendOutAndReturnFile, LRINF);
+			LOAR* LRINF = (LOAR*)malloc(sizeof(LOAR));
+			LRINF = LOARInformationLinkedListCreat(FPLR, LOARFile, LRINF);
 			LibraryAdministrator(ALT_Lev1, ALT_Lev2, UINF, RINF, LRINF,FPU, FPR,FPMB,FPPI,FPBNI,FPANI,FPLR,arr_mainfile,len,arr_authorname,arr_bookname,arr_press);
 		}
 		else if (Signin->UL == 2)	SystemAdministrator(ALT_Lev1, ALT_Lev2, UINF, FPU, FPMB, FPPI, FPBNI, FPANI, arr_mainfile, len, arr_authorname, arr_bookname, arr_press);

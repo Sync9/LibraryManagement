@@ -1,5 +1,5 @@
 #include"Header.h"
-void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, LendOutAndReturn* LRINF, FILE* FPU, FILE* FPR, FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, FILE* FPLR,BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press) {
+void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, LOAR* LRINF, FILE* FPU, FILE* FPR, FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, FILE* FPLR,BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press) {
 	int* cnt1 = (int*)malloc(sizeof(int));
 	int* cnt2 = (int*)malloc(sizeof(int));
 	int* cnt3 = (int*)malloc(sizeof(int));
@@ -244,7 +244,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 				printf("***************************\n\t1.LentOutManagement\n\t2.ReturnManagement\n\t3.BackToPrevious\n*******************************");
 				scanf("%d", &ALT_Lev2);
 				if (ALT_Lev2 == 1){
-					LendOutAndReturn* temp = (LendOutAndReturn*)malloc(sizeof(LendOutAndReturn));
+					LOAR* temp = (LOAR*)malloc(sizeof(LOAR));
 					printf("Plase input the readerID of the people who borrow the book\n");
 					scanf("%d",&temp->uid);
 					READER* CUR = RINF;
@@ -288,7 +288,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 					}
 				}
 				else if (ALT_Lev2 == 2){
-					LendOutAndReturn* temp = (LendOutAndReturn*)malloc(sizeof(LendOutAndReturn));
+					LOAR* temp = (LOAR*)malloc(sizeof(LOAR));
 					printf("Plase input the readerID of the people who return the book\n");
 					scanf("%d", &temp->uid);
 					READER* CUR = (READER*)malloc(sizeof(READER));
@@ -303,7 +303,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 					else {
 						printf("Please input the BookID the people want to return\n");
 						scanf("%d", &temp->bookID);
-						LendOutAndReturn* CUR2 = (LendOutAndReturn*)malloc(sizeof(LendOutAndReturn));
+						LOAR* CUR2 = (LOAR*)malloc(sizeof(LOAR));
 						CUR2 = LRINF;
 						while (CUR2 && CUR2->bookID != temp->bookID) {
 							CUR2 = CUR2->next;
@@ -370,13 +370,13 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 			CURR = CURR->NEXT;
 			free(PRER);
 		}
-		LendOutAndReturn* CURLR = (LendOutAndReturn*)malloc(sizeof(LendOutAndReturn));
+		LOAR* CURLR = (LOAR*)malloc(sizeof(LOAR));
 		CURLR = LRINF->next;
 		while (CURLR != NULL) {
-			fwrite(CURLR, sizeof(LendOutAndReturn), 1, FPLR);
+			fwrite(CURLR, sizeof(LOAR), 1, FPLR);
 			CURLR = CURLR->next;
 		}
-		LendOutAndReturn* PRELR = (LendOutAndReturn*)malloc(sizeof(LendOutAndReturn));
+		LOAR* PRELR = (LOAR*)malloc(sizeof(LOAR));
 		while (CURLR != NULL) {
 			PRELR = CURLR;
 			CURLR = CURLR->next;

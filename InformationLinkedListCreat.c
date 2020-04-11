@@ -73,8 +73,8 @@ READER* READERInformationLinkedListCreat(FILE*FP,char* path,READER* Head){
 		return Head;
 		free(head_ptr);
 }
-LendOutAndReturn* LendOutAndReturnInformationLinkedListCreat(FILE* FP, char* path, LendOutAndReturn* Head) {
-	LendOutAndReturn* head_ptr = (LendOutAndReturn*)malloc(sizeof(LendOutAndReturn));
+LOAR* LOARInformationLinkedListCreat(FILE* FP, char* path, LOAR* Head) {
+	LOAR* head_ptr = (LOAR*)malloc(sizeof(LOAR));
 	head_ptr = Head;
 	int cnt = 0;
 	int c = fgetc(FP);
@@ -82,10 +82,10 @@ LendOutAndReturn* LendOutAndReturnInformationLinkedListCreat(FILE* FP, char* pat
 		fseek(FP, -1, SEEK_CUR);
 		c = fgetc(FP);
 		while (c != EOF) {
-			LendOutAndReturn* NewNode = (LendOutAndReturn*)malloc(sizeof(LendOutAndReturn));
+			LOAR* NewNode = (LOAR*)malloc(sizeof(LOAR));
 			NewNode->next = NULL;
 			fseek(FP, -1, SEEK_CUR);
-			fread(NewNode, sizeof(LendOutAndReturn), 1, FP);
+			fread(NewNode, sizeof(LOAR), 1, FP);
 			if (cnt == 0) {
 				head_ptr->next = NewNode;
 				head_ptr = head_ptr->next;
