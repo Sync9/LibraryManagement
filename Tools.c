@@ -5,13 +5,45 @@ int GetNumberOfBlock(FILE* FP, int block_size) {
 	rewind(FP);
 	return cnt;
 }
-void InsertionSort(int* arr, int len) {
-	for (int* p = arr + 1; (p - arr) < len; p++)
-		for (int* q = p - 1; q >= arr; q--)
-			if (*(q + 1) > *q) {
-				int temp = *q;
-				*q = *(q + 1);
-				*(q + 1) = temp;
+void InsertionSort(BOOK* arr, int len) {
+	for (BOOK* p = arr + 1; (p - arr) < len; p++)
+		for (BOOK* q = p - 1; q >= arr; q--)
+			if ((q+1)->RecordID < q->RecordID) {
+				BOOK* temp =(BOOK*)malloc(sizeof(BOOK));
+				strcpy(temp->AuthorName, q->AuthorName);
+				temp->authorname_ptr = q->authorname_ptr;
+				temp->BookID = q->BookID;
+				strcpy(temp->BookName, q->BookName);
+				temp->bookname_ptr = q->bookname_ptr;
+				temp->LendOut = q->LendOut;
+				strcpy(temp->Press, q->Press);
+				temp->press_ptr = q->press_ptr;
+				temp->RecordID = q->RecordID;
+				temp->Total = q->Total;
+
+				strcpy(q->AuthorName, (q+1)->AuthorName);
+				q->authorname_ptr = (q+1)->authorname_ptr;
+				q->BookID = (q+1)->BookID;
+				strcpy(q->BookName, (q+1)->BookName);
+				q->bookname_ptr = (q+1)->bookname_ptr;
+				q->LendOut = (q+1)->LendOut;
+				strcpy(q->Press, (q+1)->Press);
+				q->press_ptr = (q+1)->press_ptr;
+				q->RecordID = (q+1)->RecordID;
+				q->Total = (q+1)->Total;
+				
+				strcpy((q + 1)->AuthorName,temp->AuthorName);
+				(q + 1)->authorname_ptr=temp->authorname_ptr;
+				(q + 1)->BookID=temp->BookID ;
+				strcpy((q + 1)->BookName,temp->BookName);
+				(q + 1)->bookname_ptr=temp->bookname_ptr;
+				(q + 1)->LendOut=temp->LendOut;
+				strcpy((q + 1)->Press,q->Press);
+				(q + 1)->press_ptr,temp->press_ptr;
+				(q + 1)->RecordID=temp->RecordID;
+				(q + 1)->Total=temp->Total;
+				
+				free(temp);
 			}
 			else break;
 }
