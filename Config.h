@@ -1,0 +1,7 @@
+#define	PATHU "D:\\UserInformation.dat"
+#define PATHR "D:\\ReaderInformation.dat"
+#define PATHMB "D:\\MainBookInformation.dat"
+#define PATHBNI "D:\\BookNameIndex.dat"
+#define PATHANI "D:\\AuthorNameIndex.dat"
+#define PATHPI "D:\\PressIndex.dat"
+#define PATHLR "D:\\LOAR.dat"
