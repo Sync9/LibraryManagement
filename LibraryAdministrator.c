@@ -92,6 +92,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							scanf_return=scanf("%d", &saved_info->UID);
 							scanf("%*[^\n]");
 							scanf("%*c");
+							if (saved_info->UID < 0) {
+								printf("ID couldn't be a negative number\n");
+								scanf_return = 0;
+							}
 							if (scanf_return != 1) printf("Please input the ReaderID again\n");
 						}
 						scanf_return = 0;
@@ -124,6 +128,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							scanf_return=scanf("%d", &saved_info->AvailableBook);
 							scanf("%*[^\n]");
 							scanf("%*c");
+							if (saved_info->AvailableBook < 0) {
+								printf("Available Book couldn't be a negative number\n");
+								scanf_return = 0;
+							}
 							if (scanf_return != 1) printf("Please input the number of Available Book again\n");
 						}
 						scanf_return = 0;
@@ -132,6 +140,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							scanf_return=scanf("%d", &saved_info->UnAvailableBook);
 							scanf("%*[^\n]");
 							scanf("%*c");
+							if (saved_info->UnAvailableBook< 0) {
+								printf("Unavailable Book couldn't be a negative number\n");
+								scanf_return = 0;
+							}
 							if (scanf_return != 1) printf("Please input the number of Unavailable Book again\n");
 						}
 						scanf_return = 0;
@@ -145,6 +157,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							scanf_return=scanf("%d", &saved_info->UID);
 							scanf("%*[^\n]");
 							scanf("%*c");
+							if (saved_info->UID < 0) {
+								printf("ID couldn't be a negative number\n");
+								scanf_return = 0;
+							}
 							if (scanf_return != 1) printf("Please input the ReaderID again\n");
 						}
 						scanf_return = 0;
@@ -158,7 +174,11 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							printf("Please input the AvailableBook\n");
 							scanf_return = scanf("%d", &saved_info->AvailableBook);
 							scanf("%*[^\n]");
-							scanf("%*c");
+							scanf("%*c");	
+							if (saved_info->AvailableBook < 0) {
+								printf("Available Book couldn't be a negative number\n");
+								scanf_return = 0;
+							}
 							if (scanf_return != 1) printf("Please input the number of available book again\n");
 						}
 						scanf_return = 0;
@@ -167,6 +187,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							scanf_return=scanf("%d", &saved_info->UnAvailableBook);
 							scanf("%*[^\n]");
 							scanf("%*c");
+							if (saved_info->UnAvailableBook < 0) {
+								printf("Unavailable Book couldn't be a negative number\n");
+								scanf_return = 0;
+							}
 							if (scanf_return != 1) printf("Please input the number of unavailable book again\n");
 						}
 						scanf_return = 0;
@@ -179,6 +203,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							scanf_return=scanf("%d", &saved_info->UID);
 							scanf("%*[^\n]");
 							scanf("%*c");
+							if (saved_info->UID < 0) {
+								printf("ID couldn't be a negative number\n");
+								scanf_return = 0;
+							}
 							if (scanf_return != 1) printf("Please input the ReaderID again\n");
 						}
 						scanf_return = 0;
@@ -191,6 +219,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 						scanf_return = scanf("%d", &saved_info->UID);
 						scanf("%*[^\n]");
 						scanf("%*c");
+						if (saved_info->UID < 0) {
+							printf("ID couldn't be a negative number\n");
+							scanf_return = 0;
+						}
 						if (scanf_return != 1) printf("Please input the ReaderID again\n");
 					}
 					scanf_return = 0;
@@ -294,6 +326,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							scanf_return=scanf("%d", &saved_info->RecordID);
 							scanf("%*[^\n]");
 							scanf("%*c");
+							if (saved_info->RecordID < 0) {
+								printf("RecordID couldn't be a negative number\n");
+								scanf_return = 0;
+							}
 							if (scanf_return != 1) printf("Please input the RecordID again\n");
 						}
 						scanf_return = 0;
@@ -302,6 +338,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							scanf_return=scanf("%d", &saved_info->BookID);
 							scanf("%*[^\n]");
 							scanf("%*c");
+							if (saved_info->BookID < 0) {
+								printf("BookID couldn't be a negative number\n");
+								scanf_return = 0;
+							}
 							if (scanf_return != 1) printf("Please input the BookID again\n");
 						}
 						scanf_return = 0;
@@ -316,6 +356,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							scanf_return=scanf("%d", &saved_info->LendOut);
 							scanf("%*[^\n]");
 							scanf("%*c");
+							if (saved_info->LendOut < 0) { 
+								printf("The book lent out couldn't be a negative number\n"); 
+								scanf_return = 0;
+							}
 							if (scanf_return != 1) printf("Please input the number of the book lent again\n");
 						}
 						scanf_return = 0;
@@ -324,6 +368,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							scanf_return =scanf("%d", &saved_info->Total);
 							scanf("%*[^\n]");
 							scanf("%*c");
+							if (saved_info->Total < 0) {
+								printf("The sum of books couldn't be a negative number\n");
+								scanf_return = 0;
+							}
 							if (scanf_return != 1) printf("Please input the sum of the book again\n");
 						}
 						scanf_return = 0;
@@ -346,6 +394,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 								scanf_return = scanf("%d", &saved_info->RecordID);
 								scanf("%*[^\n]");
 								scanf("%*c");
+								if (saved_info->RecordID < 0) {
+									printf("ID couldn't be a negative number\n");
+									scanf_return=0;
+								}
 								if (scanf_return != 1) printf("Please input the RecordID you are to modify again\n");
 							}
 							scanf_return = 0;
@@ -354,6 +406,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 								scanf_return = scanf("%d", &saved_info->LendOut);
 								scanf("%*[^\n]");
 								scanf("%*c");
+								if (saved_info->LendOut < 0) {
+									printf("The book lent out couldn't be a negative number\n");
+									scanf_return = 0;
+								}
 								if (scanf_return != 1) printf("Please input the number of the book lent out you are to modify again\n");
 							}
 							scanf_return = 0;
@@ -362,6 +418,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 								scanf_return = scanf("%d", &saved_info->Total);
 								scanf("%*[^\n]");
 								scanf("%*c");
+								if (saved_info->Total < 0) {
+									printf("The sum of books couldn't be a negative number\n");
+									scanf_return = 0;
+								}
 								if (scanf_return != 1) printf("Please input the sum of the book you are to modify again\n");
 							}
 							scanf_return = 0;
@@ -400,6 +460,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 										scanf_return = scanf("%d", &temp->RecordID);
 										scanf("%*[^\n]");
 										scanf("%*c");
+										if (temp->RecordID < 0) {
+											printf("ID couldn't be a negative number\n");
+											scanf_return = 0;
+										}
 										if (scanf_return != 1) printf("Please input the RecordID again\n");
 									}
 									scanf_return = 0;
@@ -489,7 +553,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 		else if (ALT_Lev1 == 4) {
 			while (ALT_Lev2 != 3) {
 				while (scanf_return != 1) {
-					printf("***************************\n\t1.LentOutManagement\n\t2.ReturnManagement\n\t3.BackToPrevious\n*******************************");
+					printf("***************************\n\t1.LentOutManagement\n\t2.ReturnManagement\n\t3.BackToPrevious\n*******************************\n");
 					scanf_return = scanf("%d", &ALT_Lev2);
 					scanf("%*[^\n]");
 					scanf("%*c");
@@ -503,8 +567,16 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 						exit(1);
 					}
 					else {
-						printf("Plase input the readerID of the people who borrow the book\n");
-						scanf("%d", &temp->uid);
+						while (scanf_return != 1) {
+							printf("Plase input the readerID of the people who borrow the book\n");
+							scanf_return=scanf("%d", &temp->uid);
+							if (temp->uid < 0) {
+								printf("ID couldn't be a negative number\n");
+								scanf_return = 0;
+							}
+							if (scanf_return != 1) printf("Please input the RecordID again\n");
+						}
+						scanf_return = 0;
 						READER* CUR = RINF;
 						while (CUR && CUR->UID != temp->uid) {
 							CUR = CUR->NEXT;
@@ -522,6 +594,11 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 								while (scanf_return != 1) {
 									printf("Please input the BookID the people want to borrow\n");
 									scanf_return = scanf("%d", &temp->bookID);
+									if (temp->bookID < 0) {
+										printf("ID couldn't be a negative number\n");
+										scanf_return = 0;
+									}
+									if (scanf_return != 1) printf("Please input the bookID again\n");
 								}
 								scanf_return = 0;
 								BOOK* ptr = arr;
@@ -556,6 +633,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 						scanf_return = scanf("%d", &temp->uid);
 						scanf("%*[^\n]");
 						scanf("%*c");
+						if (temp->uid < 0) {
+							printf("ID couldn't be a negative number\n");
+							scanf_return = 0;
+						}
 						if (scanf_return != 1) printf("Please input the ReaderID again\n");
 					}
 					scanf_return = 0;
@@ -574,6 +655,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							scanf_return = scanf("%d", &temp->bookID);
 							scanf("%*[^\n]");
 							scanf("%*c");
+							if (temp->bookID < 0) {
+								printf("ID couldn't be a negative number\n");
+								scanf_return = 0;
+							}
 							if (scanf_return != 1) printf("Please input the BookID again\n");
 						}
 						scanf_return = 0;
@@ -606,6 +691,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 											scanf_return = scanf("%d", &temp->uid);
 											scanf("%*[^\n]");
 											scanf("%*c");
+											if (temp->uid < 0) {
+												printf("ID couldn't be a negative number\n");
+												scanf_return = 0;
+											}
 											if (scanf_return != 1) printf("Please input your choice again\n");
 										}
 										scanf_return = 0;
@@ -700,7 +789,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 				fclose(FPLR);
 			}
 		}
-		if(arr!=NULL)fwrite(arr,sizeof(BOOK),len,FPMB);
+		if (arr != NULL) { 
+			fwrite(arr, sizeof(BOOK), len, FPMB); 
+			free(arr);
+		}
 		if (arr_bookname != NULL) {
 			fwrite(arr_bookname, sizeof(INDEX), *cnt1, FPBNI);
 			free(arr_bookname);
