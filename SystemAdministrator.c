@@ -291,6 +291,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 									printf("Please input the book name you are to inquire\n");
 									scanf("%9s", input);
 									PrintInquireResult(arr, arr_bookname, cnt1, input, next, cnt_temp, index_len, hit, ini, len);
+									free(input);
 								}
 							}
 						}
@@ -307,6 +308,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 									printf("Please input the author name you are to inquire\n");
 									scanf("%9s", input);
 									PrintInquireResult(arr, arr_authorname, cnt2, input, next, cnt_temp, index_len, hit, ini, len);
+									free(input);
 								}
 							}
 						}
@@ -323,6 +325,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 									printf("Please input the press you are to inquire\n");
 									scanf("%9s", input);
 									PrintInquireResult(arr, arr_press, cnt3, input, next, cnt_temp, index_len, hit, ini, len);
+									free(input);
 								}
 							}
 						}
