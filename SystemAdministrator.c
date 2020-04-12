@@ -30,7 +30,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 		if (ALT_Lev1 == 1) {
 			while (ALT_Lev2 != 6) {
 				while (scanf_return != 1) {
-					printf("**********************************\n\t1.InputReaderInformation\n\t2.ModifyReaderInformation\n\t3.DeleteReaderInformation\n\t4.inidReaderInformation\n\t5.DisplayReaderInformation\n\t6.BackToPrevious\n***********************************\n");
+					printf("**********************************\n\t1.InputUserInformation\n\t2.ModifyUserInformation\n\t3.DeleteUserInformation\n\t4.DisplayUserInformation\n\t5.ModifyUserPassword\n\t6.BackToPrevious\n***********************************\n");
 					scanf_return = scanf("%d", &ALT_Lev2);
 					scanf("%*[^\n]");
 					scanf("%*c");
@@ -291,7 +291,6 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 									printf("Please input the book name you are to inquire\n");
 									scanf("%9s", input);
 									PrintInquireResult(arr, arr_bookname, cnt1, input, next, cnt_temp, index_len, hit, ini, len);
-									free(input);
 								}
 							}
 						}
@@ -308,7 +307,6 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 									printf("Please input the author name you are to inquire\n");
 									scanf("%9s", input);
 									PrintInquireResult(arr, arr_authorname, cnt2, input, next, cnt_temp, index_len, hit, ini, len);
-									free(input);
 								}
 							}
 						}
@@ -325,7 +323,6 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 									printf("Please input the press you are to inquire\n");
 									scanf("%9s", input);
 									PrintInquireResult(arr, arr_press, cnt3, input, next, cnt_temp, index_len, hit, ini, len);
-									free(input);
 								}
 							}
 						}
