@@ -35,9 +35,6 @@ typedef struct INDEX {
 	int ini;
 	int len;
 }INDEX;
-typedef struct UNI {
-	struct UNI* next;
-}UNI;
 typedef struct LOAR {
 	int uid;
 	int bookID;
@@ -53,9 +50,6 @@ LOAR* LOARInformationLinkedListCreat(FILE* FP, char* path, LOAR* Head);
 /*Login*/
 int Login(int counter, USER* UINF, USER* Signin);
 int SignInAuthorize(USER* Head, USER* Signin);
-/*FileOperation*/
-/*void WriteInFile(FILE* FP, UNI* Head, int block_size);
-void ReadFromFile(FILE* FP, USER* Head, int block_size);*/
 /*UserManagement*/
 USER* UserManagement_1_UserInformationInput(USER* Head, USER* NewNode);
 USER* UserManagement_2_ModifyUserInformation(USER* Head, USER* NewNode);
