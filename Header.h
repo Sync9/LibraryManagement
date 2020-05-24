@@ -2,7 +2,6 @@
 #include<stdlib.h>
 #include<string.h>
 #include"Config.h"
-#pragma once
 typedef struct USER {
 	int UID;//UID=UserID
 	char Password[9];
@@ -72,7 +71,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, LOAR* LRINF, FILE* FPU, FILE* FPR, FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, FILE* FPLR, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press);
 void Reader(int ALT_Lev1, int ALT_Lev2, int UID, USER* UINF, FILE* FP, FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press);
 /*Tool*/
-void InsertionSort(int* arr, int len);
+void InsertionSort(BOOK* arr, int len);
 int BinarySearch(BOOK* arr, int len, int key);
 INDEX* RemoveDuplicate(BOOK* arr, int len, int stat, int* cnt);
 int GetNumberOfBlock(FILE* FP, int block_size);

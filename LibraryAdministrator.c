@@ -150,8 +150,8 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 						RINF = ReaderManagement_1_ReaderInformationInput(RINF, saved_info);
 					}
 					else if (ALT_Lev2 == 2) {
-						int temp = (int)malloc(sizeof(int));
-						temp = 0;
+						int* temp = (int*)malloc(sizeof(int));
+						*temp = 0;
 						while (scanf_return != 1) {
 							printf("Please input the ReaderID you wanna input\n");
 							scanf_return=scanf("%d", &saved_info->UID);

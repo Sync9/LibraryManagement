@@ -7,7 +7,7 @@ int main()
 	char BookNameIndex[] = {PATHBNI};
 	char AuthorNameIndex[] = { PATHANI };
 	char PressIndex[] = { PATHPI };
-	char LOARFile = { PATHLR };
+	char LOARFile[] = { PATHLR };
 	/************************************************************/
 	FILE* FPMB = fopen(PATHMB, "ab+");
 	if (FPMB == NULL) {
