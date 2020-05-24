@@ -64,7 +64,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 							printf("2----SystemAdministrator\n");
 							printf("3----LibraryAdministrator\n");
 							scanf_return = scanf("%d", &saved_info->UL);
-							if (saved_info->UL != 1 || saved_info->UL != 2 || saved_info->UL != 3) {
+							if (saved_info->UL != 1 && saved_info->UL != 2 && saved_info->UL != 3) {
 								printf("Please pick your chioce from follows number again\n");
 								printf("1----Reader\n");
 								printf("2----SystemAdministrator\n");
@@ -97,7 +97,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 							printf("2----SystemAdministrator\n");
 							printf("3----LibraryAdministrator\n");
 							scanf_return = scanf("%d", &saved_info->UL);
-							if (saved_info->UL != 1 || saved_info->UL != 2 || saved_info->UL != 3) {
+							if (saved_info->UL != 1 && saved_info->UL != 2 && saved_info->UL != 3) {
 								printf("Please pick your chioce from follows number again\n");
 								printf("1----Reader\n");
 								printf("2----SystemAdministrator\n");
