@@ -38,6 +38,8 @@ int main()
 	}
 	if(arr_bookname!=NULL)fread(arr_bookname, sizeof(INDEX), cnt, FPBNI);
 	fclose(FPBNI);
+	int* cnt_bookname = (int*)malloc(sizeof(int));
+	*cnt_bookname = cnt;
 	FPBNI = fopen(PATHBNI, "wb+");
 	/*************************************************************/
 	FILE* FPANI = fopen(PATHANI, "ab+"); 
@@ -53,6 +55,8 @@ int main()
 	}
 	if(arr_authorname!=NULL)fread(arr_authorname, sizeof(INDEX), cnt, FPANI);
 	fclose(FPANI);
+	int* cnt_authorname = (int*)malloc(sizeof(int));
+	*cnt_authorname = cnt;
 	FPANI = fopen(PATHANI, "wb+");
 	/************************************************************/
 	FILE* FPPI = fopen(PATHPI, "ab+");
@@ -68,6 +72,8 @@ int main()
 	}
 	if(arr_press!=NULL)fread(arr_press, sizeof(INDEX), cnt, FPPI);
 	fclose(FPPI);
+	int* cnt_pressname = (int*)malloc(sizeof(int));
+	*cnt_pressname = cnt;
 	FPPI = fopen(PATHPI, "wb+");
 	/************************************************************/
 	FILE* FPU = fopen(PATHU, "ab+");
@@ -79,10 +85,60 @@ int main()
 	UINF=USERInformationLinkedListCreat(FPU,UserFile,UINF);
 	USER* Signin = (USER*)malloc(sizeof(USER));
 	cnt = 0;
-	if (Login(cnt, UINF, Signin) == 0) exit(1);
+	if (Login(cnt, UINF, Signin) == 0) { 
+		USER* CURU = (USER*)malloc(sizeof(USER));
+		if (CURU == NULL) {
+			printf("Fail to apply for memory\n");
+			exit(1);
+		}
+		else {
+			CURU = UINF->NEXT;
+			while (CURU != NULL) {
+				fwrite(CURU, sizeof(USER), 1, FPU);
+				CURU = CURU->NEXT;
+			}
+			USER* PREU = (USER*)malloc(sizeof(USER));
+			if (PREU == NULL) {
+				printf("Fail to apply for memory\n");
+				exit(1);
+			}
+			else {
+				while (CURU != NULL) {
+					PREU = CURU;
+					CURU = CURU->NEXT;
+					free(PREU);
+				}
+				fclose(FPU);
+			}
+		}
+		if (arr_mainfile != NULL) {
+			fwrite(arr_mainfile, sizeof(BOOK), len, FPMB);
+			free(arr_mainfile);
+		}
+		if (arr_bookname != NULL) {
+			fwrite(arr_bookname, sizeof(INDEX), *cnt_bookname, FPBNI);
+			free(arr_bookname);
+			free(cnt_bookname);
+		}
+		if (arr_authorname != NULL) {
+			fwrite(arr_authorname, sizeof(INDEX), *cnt_authorname, FPANI);
+			free(arr_authorname);
+			free(cnt_authorname);
+		}
+		if (arr_press != NULL) {
+			fwrite(arr_press, sizeof(INDEX), *cnt_pressname, FPPI);
+			free(arr_press);
+			free(cnt_pressname);
+		}
+		fclose(FPMB);
+		fclose(FPPI);
+		fclose(FPBNI);
+		fclose(FPANI);
+		exit(1); 
+	}
 	else {
 		int ALT_Lev1 = 0;//ALT=AlternativeFeature
-		int ALT_Lev2 = 0;//ALT_Lev2=AlternativeInFeature
+		int ALT_Lev2 = 0;//ALT_Lev2=AlternativeFeatureLevel2¡¡
 		if (Signin->UL == 3) {
 			FILE* FPR = fopen(PATHR, "ab+");
 			if (FPR == NULL) {

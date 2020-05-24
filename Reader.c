@@ -28,7 +28,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF, FILE* FP,FILE* FPMB, 
 		if (ALT_Lev1 == 1) {
 			while (ALT_Lev2 != 6) {
 				while (scanf_return != 1) {
-					printf("**********************************\n\t1.InputReaderInformation\n\t2.ModifyReaderInformation\n\t3.DeleteReaderInformation\n\t4.inidReaderInformation\n\t5.DisplayReaderInformation\n\t6.BackToPrevious\n***********************************\n");
+					printf("**********************************\n\t1.InputUserInformation\n\t2.ModifyUserInformation\n\t3.DeleteUserInformation\n\t4.DisplayUserInformation\n\t5.ModifyUserPassword\n\t6.BackToPrevious\n***********************************\n");
 					scanf_return = scanf("%d", &ALT_Lev2);
 					scanf("%*[^\n]");
 					scanf("%*c");
