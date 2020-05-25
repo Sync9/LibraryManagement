@@ -130,6 +130,7 @@ int main()
 			free(arr_press);
 			free(cnt_pressname);
 		}
+		printf("All the information needed to be saved has been saved\n");
 		fclose(FPMB);
 		fclose(FPPI);
 		fclose(FPBNI);

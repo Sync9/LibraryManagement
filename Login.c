@@ -49,7 +49,7 @@ int Login(int cnt, USER* UINF, USER* Signin) {
 	} while (SignInAuthorize(UINF, Signin) != 1 && cnt != 3);
 	if (cnt == 3) {
 		printf("You have tried 3 times!System won't run.Please contact the Library Administrator to ask for help\n");
-		exit(1);
+		return 0;
 	}
 	else {
 		printf("Sign in as UserID=%d\tUserLevel = %d\n", Signin->UID, Signin->UL);

@@ -73,7 +73,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 		else if (ALT_Lev1 == 2) {
 			while (ALT_Lev2 != 6) {
 				while (scanf_return != 1) {
-					printf("**********************************\n\t1.InputReaderInformation\n\t2.ModifyReaderInformation\n\t3.DeleteReaderInformation\n\t4.inidReaderInformation\n\t5.DisplayReaderInformation\n\t6.BackToPrevious\n***********************************\n");
+					printf("**********************************\n\t1.InputReaderInformation\n\t2.ModifyReaderInformation\n\t3.DeleteReaderInformation\n\t4.FinddReaderInformation\n\t5.DisplayReaderInformation\n\t6.BackToPrevious\n***********************************\n");
 					scanf_return=scanf("%d", &ALT_Lev2);
 					scanf("%*[^\n]");
 					scanf("%*c");
