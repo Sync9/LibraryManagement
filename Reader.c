@@ -244,6 +244,86 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF, FILE* FP,FILE* FPMB, 
 				else printf("Illegal Input\nPlease input your choice again\n");
 			}
 		}
+		else if (ALT_Lev1 == 4) {
+			while (ALT_Lev2 != 2) {
+				while (scanf_return != 1) {
+					printf("**********************************\n1.Order\t\n2.BackToPrevious\t\n**********************************\n");
+					scanf_return = scanf("%d", &ALT_Lev2);
+					scanf("%*[^\n]");
+					scanf("%*c");
+					if (scanf_return != 1) printf("Please input the number you choosed again\n");
+				}
+				scanf_return = 0;
+				if (ALT_Lev2 == 1) {
+					LOAR* temp = (LOAR*)malloc(sizeof(LOAR));
+					if (temp == NULL) {
+						printf("Fail to apply for memory\n");
+						exit(1);
+					}
+					else {
+						while (scanf_return != 1) {
+							printf("Plase input your readerID\n");
+							scanf_return = scanf("%d", &temp->uid);
+							if (temp->uid < 0) {
+								printf("ID couldn't be a negative number\n");
+								scanf_return = 0;
+							}
+							if (scanf_return != 1) printf("Please input your RecordID again\n");
+						}
+						scanf_return = 0;
+						READER* CUR = RINF;
+						while (CUR && CUR->UID != temp->uid) {
+							CUR = CUR->NEXT;
+						}
+						if (CUR == NULL) {
+							printf("Illegal ReaderID\n");
+							continue;
+						}
+						else {
+							if (CUR->AvailableBook == 0) {
+								printf("Sorry.You couldn't borrow book beacause your avaliable book is 0\n");
+								continue;
+							}
+							else {
+								while (scanf_return != 1) {
+									printf("Please input the BookID you are to order\n");
+									scanf_return = scanf("%d", &temp->bookID);
+									if (temp->bookID < 0) {
+										printf("ID couldn't be a negative number\n");
+										scanf_return = 0;
+									}
+									if (scanf_return != 1) printf("Please input the bookID again\n");
+								}
+								scanf_return = 0;
+								BOOK* ptr = arr;
+								for (; (ptr - arr) < len; ptr++) if (ptr->BookID == temp->bookID) break;
+								if ((ptr - arr) == len) {
+									printf("Illegal BookID\n");
+									continue;
+								}
+								else {
+									if (ptr->Total != ptr->LendOut) {
+										printf("Please input the time you are goint to borrow\n");
+										printf("YY/MM/DD\n");
+										scanf("%11s", temp->lendout_date);
+										CUR->AvailableBook = CUR->AvailableBook - 1;
+										ptr->LendOut = ptr->LendOut + 1;
+										AddNewNode(LRINF, temp);
+										free(temp);
+									}
+									else {
+										printf("Sorry,all the book has been lent out\n");
+										continue;
+									}
+								}
+							}
+						}
+					}
+				}
+				else if (ALT_Lev2 == 2);
+				else printf("Illegal Input\nPlease input your choice again\n");
+			}
+		}
 		else if (ALT_Lev1 == 5);
 		else printf("Illegal Input\nPlease input your choice again\n");
 	}
