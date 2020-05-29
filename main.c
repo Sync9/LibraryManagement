@@ -173,7 +173,7 @@ int main()
 			}
 			LOAR* LRINF = (LOAR*)malloc(sizeof(LOAR));
 			LRINF = LOARInformationLinkedListCreat(FPLR, LOARFile, LRINF);
-			Reader(ALT_Lev1, ALT_Lev2, Signin->UID, UINF,FPU,FPMB, FPPI, FPBNI, FPANI, arr_mainfile, len, arr_authorname, arr_bookname, arr_press);
+			Reader(ALT_Lev1, ALT_Lev2, Signin->UID, UINF, RINF, LRINF, FPU,FPR,FPLR,FPMB, FPPI, FPBNI, FPANI, arr_mainfile, len, arr_authorname, arr_bookname, arr_press);
 		}
 	}
 	return 0;
