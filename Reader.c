@@ -328,18 +328,80 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 		else printf("Illegal Input\nPlease input your choice again\n");
 	}
 	USER* CURU = (USER*)malloc(sizeof(USER));
-	CURU = UINF->NEXT;
-	while (CURU != NULL) {
-		fwrite(CURU, sizeof(USER), 1, FP);
-		CURU = CURU->NEXT;
-	}
-	USER* PREU = (USER*)malloc(sizeof(USER));
-	while (CURU != NULL) {
-		PREU = CURU;
-		CURU = CURU->NEXT;
-		free(PREU);
-	}
-	fclose(FP);
+		if (CURU == NULL) {
+			printf("Fail to apply for memory\n");
+			exit(1);
+		}
+		else {
+			CURU = UINF->NEXT;
+			while (CURU != NULL) {
+				fwrite(CURU, sizeof(USER), 1, FPU);
+				CURU = CURU->NEXT;
+			}
+			USER* PREU = (USER*)malloc(sizeof(USER));
+			if (PREU == NULL) {
+				printf("Fail to apply for memory\n");
+				exit(1);
+			}
+			else {
+				while (CURU != NULL) {
+					PREU = CURU;
+					CURU = CURU->NEXT;
+					free(PREU);
+				}
+				fclose(FPU);
+			}
+		}
+		READER* CURR = (READER*)malloc(sizeof(READER));
+		if (CURR == NULL) {
+			printf("Fail to apply for memory\n");
+			exit(1);
+		}
+		else {
+			CURR = RINF->NEXT;
+			while (CURR != NULL) {
+				fwrite(CURR, sizeof(READER), 1, FPR);
+				CURR = CURR->NEXT;
+			}
+			READER* PRER = (READER*)malloc(sizeof(READER));
+			if (PRER == NULL) {
+				printf("Fail to apply for memory\n");
+				exit(1);
+			}
+			else {
+				while (CURR != NULL) {
+					PRER = CURR;
+					CURR = CURR->NEXT;
+					free(PRER);
+				}
+				fclose(FPR);
+			}
+		}
+		LOAR* CURLR = (LOAR*)malloc(sizeof(LOAR));
+		if (CURLR == NULL) {
+			printf("Fail to apply for memory\n");
+			exit(1);
+		}
+		else {
+			CURLR = LRINF->next;
+			while (CURLR != NULL) {
+				fwrite(CURLR, sizeof(LOAR), 1, FPLR);
+				CURLR = CURLR->next;
+			}
+			LOAR* PRELR = (LOAR*)malloc(sizeof(LOAR));
+			if (PRELR == NULL) {
+				printf("Fail to apply for memory\n");
+				exit(1);
+			}
+			else {
+				while (CURLR != NULL) {
+					PRELR = CURLR;
+					CURLR = CURLR->next;
+					free(PRELR);
+				}
+				fclose(FPLR);
+			}
+		}
 	if (arr != NULL) {
 		fwrite(arr, sizeof(BOOK), len, FPMB);
 		free(arr);
