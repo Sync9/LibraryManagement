@@ -1,5 +1,5 @@
 #include"Header.h"
-void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF, FILE* FP,FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press) {
+void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRINF, FILE* FP,FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press) {
 	int* cnt1 = (int*)malloc(sizeof(int));
 	if (cnt1 == NULL) {
 		printf("Fail to apply for memory\n");
