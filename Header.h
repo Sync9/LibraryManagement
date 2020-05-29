@@ -69,7 +69,7 @@ void PrintInquireResult(BOOK* arr, INDEX* index, int* cnt2, char* input, int nex
 /*DifferentRole*/
 void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press);
 void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, LOAR* LRINF, FILE* FPU, FILE* FPR, FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, FILE* FPLR, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press);
-void Reader(int ALT_Lev1, int ALT_Lev2, int UID, USER* UINF, FILE* FP, FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press);
+void Reader(int ALT_Lev1, int ALT_Lev2, int UID, USER* UINF,READER* RINF,LOAR* LRINF, FILE* FP, FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press);
 /*Tool*/
 void InsertionSort(BOOK* arr, int len);
 int BinarySearch(BOOK* arr, int len, int key);
