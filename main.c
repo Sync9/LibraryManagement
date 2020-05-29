@@ -139,7 +139,7 @@ int main()
 	}
 	else {
 		int ALT_Lev1 = 0;//ALT=AlternativeFeature
-		int ALT_Lev2 = 0;//ALT_Lev2=AlternativeFeatureLevel2¡¡
+		int ALT_Lev2 = 0;//ALT_Lev2=AlternativeFeatureLevel2Â¡Â¡
 		if (Signin->UL == 3) {
 			FILE* FPR = fopen(PATHR, "ab+");
 			if (FPR == NULL) {
@@ -158,8 +158,23 @@ int main()
 			LibraryAdministrator(ALT_Lev1, ALT_Lev2, UINF, RINF, LRINF,FPU, FPR,FPMB,FPPI,FPBNI,FPANI,FPLR,arr_mainfile,len,arr_authorname,arr_bookname,arr_press);
 		}
 		else if (Signin->UL == 2)	SystemAdministrator(ALT_Lev1, ALT_Lev2, UINF, FPU, FPMB, FPPI, FPBNI, FPANI, arr_mainfile, len, arr_authorname, arr_bookname, arr_press);
-		else if (Signin->UL == 1)	Reader(ALT_Lev1, ALT_Lev2, Signin->UID, UINF,FPU,FPMB, FPPI, FPBNI, FPANI, arr_mainfile, len, arr_authorname, arr_bookname, arr_press);
-		
+		else if (Signin->UL == 1)	{
+			FILE* FPR = fopen(PATHR, "ab+");
+			if (FPR == NULL) {
+				printf("Fail to open the file named ReaderInformation:(\n");
+				exit(1);
+			}
+			READER* RINF = (READER*)malloc(sizeof(READER));
+			RINF = READERInformationLinkedListCreat(FPR, ReaderFile, RINF);
+			FILE* FPLR = fopen(PATHLR, "ab+");
+			if (FPLR == NULL) {
+				printf("Fail to open the file named LOARInformation\n");
+				exit(1);
+			}
+			LOAR* LRINF = (LOAR*)malloc(sizeof(LOAR));
+			LRINF = LOARInformationLinkedListCreat(FPLR, LOARFile, LRINF);
+			Reader(ALT_Lev1, ALT_Lev2, Signin->UID, UINF,FPU,FPMB, FPPI, FPBNI, FPANI, arr_mainfile, len, arr_authorname, arr_bookname, arr_press);
+		}
 	}
 	return 0;
 }
