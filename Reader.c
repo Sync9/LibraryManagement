@@ -247,7 +247,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 		else if (ALT_Lev1 == 4) {
 			while (ALT_Lev2 != 2) {
 				while (scanf_return != 1) {
-					printf("**********************************\n1.Order\t\n2.BackToPrevious\t\n**********************************\n");
+					printf("**********************************\n\t1.Order\t\n\t2.BackToPrevious\t\n**********************************\n");
 					scanf_return = scanf("%d", &ALT_Lev2);
 					scanf("%*[^\n]");
 					scanf("%*c");
@@ -294,7 +294,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 									}
 									if (scanf_return != 1) printf("Please input the bookID again\n");
 								}
-								scanf_return = 0;
+								scanf_return = 0
 								BOOK* ptr = arr;
 								for (; (ptr - arr) < len; ptr++) if (ptr->BookID == temp->bookID) break;
 								if ((ptr - arr) == len) {
