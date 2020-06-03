@@ -294,7 +294,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 									}
 									if (scanf_return != 1) printf("Please input the bookID again\n");
 								}
-								scanf_return = 0
+								scanf_return = 0;
 								BOOK* ptr = arr;
 								for (; (ptr - arr) < len; ptr++) if (ptr->BookID == temp->bookID) break;
 								if ((ptr - arr) == len) {
