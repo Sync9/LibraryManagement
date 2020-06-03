@@ -43,7 +43,7 @@ typedef struct LOAR {
 	struct LOAR* next;
 }LOAR;
 /*************************/
-USER* USERInformationLinkedListCreat(FILE* FP, char* path, USER* Head);
+USER* USERInformationLinkedListCreat(FILE* FP, char* path, USER* Head,USER* firstuser);
 READER* READERInformationLinkedListCreat(FILE* FP, char* path, READER* Head);
 LOAR* LOARInformationLinkedListCreat(FILE* FP, char* path, LOAR* Head);
 /*Login*/
