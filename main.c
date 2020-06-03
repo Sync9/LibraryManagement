@@ -82,7 +82,26 @@ int main()
 		exit(1);
 	}
 	USER* UINF = (USER*)malloc(sizeof(USER));
-	UINF=USERInformationLinkedListCreat(FPU,UserFile,UINF);
+	int* c = (int*)malloc(sizeof(int));
+	*c = fgetc(FPU);
+	USER* firstuser = (USER*)malloc(sizeof(USER));
+	if (c == EOF) {
+		fseek(FPU, -1, SEEK_CUR);
+		UINF->NEXT = NULL;
+		printf("It seems that it's your first time to run the system:)\n");
+		printf("There is no user in the System\n");
+		printf("Don't worry,I will help you become the first System Administrator:)\n");
+		firstuser->UL = 2;
+		printf("Now Please your UserID\n");
+		scanf("%d", &firstuser->UID);
+		printf("Your Password\n");
+		scanf("%s", firstuser->Password);
+		printf("%s is your Password\n", firstuser->Password);
+		printf("Congratulations! You have become the fist System Administrator\n");
+	}
+	else firstuser = NULL;
+	free(c);
+	UINF=USERInformationLinkedListCreat(FPU,UserFile,UINF,firstuser);
 	USER* Signin = (USER*)malloc(sizeof(USER));
 	cnt = 0;
 	if (Login(cnt, UINF, Signin) == 0) { 
