@@ -1,5 +1,5 @@
 #include"Header.h"
-USER* USERInformationLinkedListCreat(FILE* FP,char* path,USER* Head) {
+USER* USERInformationLinkedListCreat(FILE* FP,char* path,USER* Head,USER* firstuser) {
 		int c = fgetc(FP);
 		int cnt = 0;
 		USER* head_ptr = (USER*)malloc(sizeof(USER));
@@ -25,19 +25,7 @@ USER* USERInformationLinkedListCreat(FILE* FP,char* path,USER* Head) {
 		}
 		else {
 			fseek(FP, -1, SEEK_CUR);
-			USER* FirstUser = (USER*)malloc(sizeof(USER));
-			head_ptr->NEXT = NULL;
-			printf("It seems that it's your first time to run the system:)\n");
-			printf("There is no user in the System\n");
-			printf("Don't worry,I will help you become the first System Administrator:)\n");
-			FirstUser->UL = 2;
-			printf("Now Please input your UserID\n");
-			scanf("%d", &FirstUser->UID);
-			printf("Your Password\n");
-			scanf("%s", FirstUser->Password);
-			printf("%s is your Password", FirstUser->Password);
-			printf("Congratulations! You have become the fist System Administrator\n");
-			UserManagement_1_UserInformationInput(head_ptr, FirstUser);
+			UserManagement_1_UserInformationInput(head_ptr, firstuser);
 		}
 		return Head;
 		free(head_ptr);
