@@ -85,7 +85,7 @@ int main()
 	int* c = (int*)malloc(sizeof(int));
 	*c = fgetc(FPU);
 	USER* firstuser = (USER*)malloc(sizeof(USER));
-	if (c == EOF) {
+	if (*c == EOF) {
 		fseek(FPU, -1, SEEK_CUR);
 		UINF->NEXT = NULL;
 		printf("It seems that it's your first time to run the system:)\n");
