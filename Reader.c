@@ -16,30 +16,20 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 		exit(1);
 	}
 	while (ALT_Lev1 != 5) {
-		int scanf_return = 0;
-		while (scanf_return != 1) {
-			printf("**********************************\n\t1.UserManagement\n\t2.ReaderManagement\n\t3.BookManagement\n\t4.BookCirculationManagement\n\t5.Exit\n***********************************\n");
-			scanf_return = scanf("%d", &ALT_Lev1);
-			scanf("%*[^\n]");
-			scanf("%*c");
-			if (scanf_return != 1) printf("Please input the number you choosed again\n");
-		}
-		scanf_return = 0;
+		ALT_Lev1 = 0;
+		ALT_Lev2 = 0;
+		printf("**********************************\n\t1.UserManagement\n\t2.ReaderManagement\n\t3.BookManagement\n\t4.BookCirculationManagement\n\t5.Exit\n***********************************\n");
+		scanf("%d", &ALT_Lev1);
 		if (ALT_Lev1 == 1) {
 			while (ALT_Lev2 != 6) {
-				while (scanf_return != 1) {
-					printf("**********************************\n\t1.InputUserInformation\n\t2.ModifyUserInformation\n\t3.DeleteUserInformation\n\t4.DisplayUserInformation\n\t5.ModifyUserPassword\n\t6.BackToPrevious\n***********************************\n");
-					scanf_return = scanf("%d", &ALT_Lev2);
-					scanf("%*[^\n]");
-					scanf("%*c");
-					if (scanf_return != 1) printf("Please input the number you choosed again\n");
-				}
-				scanf_return = 0;
+				printf("**********************************\n\t1.InputUserInformation\n\t2.ModifyUserInformation\n\t3.DeleteUserInformation\n\t4.DisplayUserInformation\n\t5.ModifyUserPassword\n\t6.BackToPrevious\n***********************************\n");
+				scanf("%d", &ALT_Lev2);
 				if (ALT_Lev2 == 5) {
 					USER* saved_info = (USER*)malloc(sizeof(USER));
 					saved_info->UID = UID;
+					saved_info->UL = 1;
 					printf("Please input the password you are to apply\n");
-					scanf("%9s", &saved_info->Password);
+					scanf("%9s", saved_info->Password);
 					UINF = UserManagement_2_ModifyUserInformation(UINF, saved_info);
 					free(saved_info);
 				}
@@ -48,7 +38,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 				else printf("Illegal Input\nPlease input your choice again\n");
 			}
 		}
-		else if (ALT_Lev1 == 2 || ALT_Lev1 == 4) {
+		else if (ALT_Lev1 == 2) {
 			printf("Sorry,it's seems that you have no access to the feature:(\n");
 		}
 		else if (ALT_Lev1 == 3) {
@@ -113,14 +103,10 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 						free(temp);
 					}
 				}
-				while (scanf_return != 1) {
+				do {
 					printf("**************************************\n\t1.InputBookInformation\n\t2.ModifyBookInformation\n\t3.InquireBookInformation\n\t4.TotalStatistics\n\t5.BackToPrevious\n**************************************\n");
-					scanf_return = scanf("%d", &ALT_Lev2);
-					scanf("%*[^\n]");
-					scanf("%*c");
-					if (scanf_return != 1) printf("Please input the number you choosed again\n");
-				}
-				scanf_return = 0;
+					scanf("%d", &ALT_Lev2);
+				} while (ALT_Lev2 < 1 && ALT_Lev2>5);
 				if (ALT_Lev2 == 1 || ALT_Lev2 == 2) printf("Sorry,it's seems that you have no access to the feature:(\n");
 				else if (ALT_Lev2 == 3) {
 					int ALT_Lev3 = 0;
@@ -130,14 +116,8 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 						int index_len = 0;
 						int hit = 0;
 						int ini = 0;
-						while (scanf_return != 1) {
-							printf("**************************************\n\t1.By RecordID\n\t2.By BookName\n\t3.By AuthorName\n\t4.By Press\n\t5.BackToPrevious\n**************************************\n");
-							scanf_return = scanf("%d", &ALT_Lev3);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (scanf_return != 1) printf("Please input the number you choosed again\n");
-						}
-						scanf_return = 0;
+						printf("**************************************\n\t1.By RecordID\n\t2.By BookName\n\t3.By AuthorName\n\t4.By Press\n\t5.BackToPrevious\n**************************************\n");
+						scanf("%d", &ALT_Lev3);
 						if (ALT_Lev3 == 1) {
 							if (arr == NULL) printf("There is no information\n");
 							else {
@@ -148,18 +128,10 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 								}
 								else {
 									int offset = 0;
-									while (scanf_return != 1) {
+									do {
 										printf("Please input the recordID you are to inquire\n");
-										scanf_return = scanf("%d", &temp->RecordID);
-										scanf("%*[^\n]");
-										scanf("%*c");
-										if (temp->RecordID < 0) {
-											printf("ID couldn't be a negative number\n");
-											scanf_return = 0;
-										}
-										if (scanf_return != 1) printf("Please input the RecordID again\n");
-									}
-									scanf_return = 0;
+										scanf("%d", &temp->RecordID);
+									} while (temp->RecordID < 1);
 									InsertionSort(arr, len);
 									offset = BinarySearch(arr, len, temp->RecordID);
 									if (offset == -1) printf("The item isn't exsist\n");
@@ -246,14 +218,8 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 		}
 		else if (ALT_Lev1 == 4) {
 			while (ALT_Lev2 != 2) {
-				while (scanf_return != 1) {
-					printf("**********************************\n\t1.Order\t\n\t2.BackToPrevious\t\n**********************************\n");
-					scanf_return = scanf("%d", &ALT_Lev2);
-					scanf("%*[^\n]");
-					scanf("%*c");
-					if (scanf_return != 1) printf("Please input the number you choosed again\n");
-				}
-				scanf_return = 0;
+				printf("**********************************\n\t1.Order\t\n\t2.BackToPrevious\t\n**********************************\n");
+				scanf("%d", &ALT_Lev2);
 				if (ALT_Lev2 == 1) {
 					LOAR* temp = (LOAR*)malloc(sizeof(LOAR));
 					if (temp == NULL) {
@@ -261,16 +227,8 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 						exit(1);
 					}
 					else {
-						while (scanf_return != 1) {
-							printf("Plase input your readerID\n");
-							scanf_return = scanf("%d", &temp->uid);
-							if (temp->uid < 0) {
-								printf("ID couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input your RecordID again\n");
-						}
-						scanf_return = 0;
+						printf("Plase input your readerID\n");
+						scanf("%d", &temp->uid);
 						READER* CUR = RINF;
 						while (CUR && CUR->UID != temp->uid) {
 							CUR = CUR->NEXT;
@@ -285,16 +243,8 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 								continue;
 							}
 							else {
-								while (scanf_return != 1) {
-									printf("Please input the BookID you are to order\n");
-									scanf_return = scanf("%d", &temp->bookID);
-									if (temp->bookID < 0) {
-										printf("ID couldn't be a negative number\n");
-										scanf_return = 0;
-									}
-									if (scanf_return != 1) printf("Please input the bookID again\n");
-								}
-								scanf_return = 0;
+								printf("Please input the BookID you are to order\n");
+								scanf("%d", &temp->bookID);
 								BOOK* ptr = arr;
 								for (; (ptr - arr) < len; ptr++) if (ptr->BookID == temp->bookID) break;
 								if ((ptr - arr) == len) {
@@ -328,80 +278,80 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 		else printf("Illegal Input\nPlease input your choice again\n");
 	}
 	USER* CURU = (USER*)malloc(sizeof(USER));
-		if (CURU == NULL) {
+	if (CURU == NULL) {
+		printf("Fail to apply for memory\n");
+		exit(1);
+	}
+	else {
+		CURU = UINF->NEXT;
+		while (CURU != NULL) {
+			fwrite(CURU, sizeof(USER), 1, FPU);
+			CURU = CURU->NEXT;
+		}
+		USER* PREU = (USER*)malloc(sizeof(USER));
+		if (PREU == NULL) {
 			printf("Fail to apply for memory\n");
 			exit(1);
 		}
 		else {
-			CURU = UINF->NEXT;
 			while (CURU != NULL) {
-				fwrite(CURU, sizeof(USER), 1, FPU);
+				PREU = CURU;
 				CURU = CURU->NEXT;
+				free(PREU);
 			}
-			USER* PREU = (USER*)malloc(sizeof(USER));
-			if (PREU == NULL) {
-				printf("Fail to apply for memory\n");
-				exit(1);
-			}
-			else {
-				while (CURU != NULL) {
-					PREU = CURU;
-					CURU = CURU->NEXT;
-					free(PREU);
-				}
-				fclose(FPU);
-			}
+			fclose(FPU);
 		}
-		READER* CURR = (READER*)malloc(sizeof(READER));
-		if (CURR == NULL) {
+	}
+	READER* CURR = (READER*)malloc(sizeof(READER));
+	if (CURR == NULL) {
+		printf("Fail to apply for memory\n");
+		exit(1);
+	}
+	else {
+		CURR = RINF->NEXT;
+		while (CURR != NULL) {
+			fwrite(CURR, sizeof(READER), 1, FPR);
+			CURR = CURR->NEXT;
+		}
+		READER* PRER = (READER*)malloc(sizeof(READER));
+		if (PRER == NULL) {
 			printf("Fail to apply for memory\n");
 			exit(1);
 		}
 		else {
-			CURR = RINF->NEXT;
 			while (CURR != NULL) {
-				fwrite(CURR, sizeof(READER), 1, FPR);
+				PRER = CURR;
 				CURR = CURR->NEXT;
+				free(PRER);
 			}
-			READER* PRER = (READER*)malloc(sizeof(READER));
-			if (PRER == NULL) {
-				printf("Fail to apply for memory\n");
-				exit(1);
-			}
-			else {
-				while (CURR != NULL) {
-					PRER = CURR;
-					CURR = CURR->NEXT;
-					free(PRER);
-				}
-				fclose(FPR);
-			}
+			fclose(FPR);
 		}
-		LOAR* CURLR = (LOAR*)malloc(sizeof(LOAR));
-		if (CURLR == NULL) {
+	}
+	LOAR* CURLR = (LOAR*)malloc(sizeof(LOAR));
+	if (CURLR == NULL) {
+		printf("Fail to apply for memory\n");
+		exit(1);
+	}
+	else {
+		CURLR = LRINF->next;
+		while (CURLR != NULL) {
+			fwrite(CURLR, sizeof(LOAR), 1, FPLR);
+			CURLR = CURLR->next;
+		}
+		LOAR* PRELR = (LOAR*)malloc(sizeof(LOAR));
+		if (PRELR == NULL) {
 			printf("Fail to apply for memory\n");
 			exit(1);
 		}
 		else {
-			CURLR = LRINF->next;
 			while (CURLR != NULL) {
-				fwrite(CURLR, sizeof(LOAR), 1, FPLR);
+				PRELR = CURLR;
 				CURLR = CURLR->next;
+				free(PRELR);
 			}
-			LOAR* PRELR = (LOAR*)malloc(sizeof(LOAR));
-			if (PRELR == NULL) {
-				printf("Fail to apply for memory\n");
-				exit(1);
-			}
-			else {
-				while (CURLR != NULL) {
-					PRELR = CURLR;
-					CURLR = CURLR->next;
-					free(PRELR);
-				}
-				fclose(FPLR);
-			}
+			fclose(FPLR);
 		}
+	}
 	if (arr != NULL) {
 		fwrite(arr, sizeof(BOOK), len, FPMB);
 		free(arr);
