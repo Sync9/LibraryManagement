@@ -25,11 +25,9 @@ USER* USERInformationLinkedListCreat(FILE* FP,char* path,USER* Head,USER* firstu
 		return Head;
 		free(head_ptr);
 }
-}
 READER* READERInformationLinkedListCreat(FILE*FP,char* path,READER* Head){
 		READER* head_ptr = (READER*)malloc(sizeof(READER));
 		head_ptr = Head;
-		int cnt = 0;
 		int c = fgetc(FP);
 		if (c != EOF) {
 			fseek(FP, -1, SEEK_CUR);
@@ -39,12 +37,8 @@ READER* READERInformationLinkedListCreat(FILE*FP,char* path,READER* Head){
 				NewNode->NEXT = NULL;
 				fseek(FP, -1, SEEK_CUR);
 				fread(NewNode, sizeof(READER), 1, FP);
-				if (cnt == 0) {
-					head_ptr->NEXT = NewNode;
-					head_ptr = head_ptr->NEXT;
-					cnt++;
-				}
-				else head_ptr->NEXT = NewNode;
+				head_ptr->NEXT = NewNode;
+				head_ptr = head_ptr->NEXT;
 				c = fgetc(FP);
 			}
 			fclose(FP);
@@ -60,7 +54,6 @@ READER* READERInformationLinkedListCreat(FILE*FP,char* path,READER* Head){
 LOAR* LOARInformationLinkedListCreat(FILE* FP, char* path, LOAR* Head) {
 	LOAR* head_ptr = (LOAR*)malloc(sizeof(LOAR));
 	head_ptr = Head;
-	int cnt = 0;
 	int c = fgetc(FP);
 	if (c != EOF) {
 		fseek(FP, -1, SEEK_CUR);
@@ -70,12 +63,8 @@ LOAR* LOARInformationLinkedListCreat(FILE* FP, char* path, LOAR* Head) {
 			NewNode->next = NULL;
 			fseek(FP, -1, SEEK_CUR);
 			fread(NewNode, sizeof(LOAR), 1, FP);
-			if (cnt == 0) {
-				head_ptr->next = NewNode;
-				head_ptr = head_ptr->next;
-				cnt++;
-			}
-			else head_ptr->next = NewNode;
+			head_ptr->next = NewNode;
+			head_ptr = head_ptr->next;
 			c = fgetc(FP);
 		}
 		fclose(FP);

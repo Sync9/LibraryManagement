@@ -1,14 +1,19 @@
 #include"Header.h"
 READER* ReaderManagement_1_ReaderInformationInput(READER*Head,READER*RealNode) {
 	READER* NewNode = (READER*)malloc(sizeof(READER));
-	NewNode->UID = RealNode->UID;
-	strcpy(NewNode->Name, RealNode->Name);
-	strcpy(NewNode->WorkPlace, RealNode->WorkPlace);
-	strcpy(NewNode->PhoneNumber, RealNode->PhoneNumber);
-	NewNode->AvailableBook = RealNode->AvailableBook;
-	NewNode->UnAvailableBook = RealNode->UnAvailableBook;
-	READER* CUR = (READER*)malloc(sizeof(READER));
-	READER* PRE = (READER*)malloc(sizeof(READER));
+	if (NewNode == NULL) {
+		printf("Fail to apply for memory\n");
+		exit(1);
+	}
+	else {
+		NewNode->UID = RealNode->UID;
+		strcpy(NewNode->Name, RealNode->Name);
+		strcpy(NewNode->WorkPlace, RealNode->WorkPlace);
+		strcpy(NewNode->PhoneNumber, RealNode->PhoneNumber);
+		NewNode->AvailableBook = RealNode->AvailableBook;
+		NewNode->UnAvailableBook = RealNode->UnAvailableBook;
+		READER* CUR = (READER*)malloc(sizeof(READER));
+		READER* PRE = (READER*)malloc(sizeof(READER));
 		CUR = Head->NEXT;
 		PRE = Head->NEXT;
 		if (CUR == NULL) {
@@ -27,6 +32,7 @@ READER* ReaderManagement_1_ReaderInformationInput(READER*Head,READER*RealNode) {
 		return Head;
 		free(CUR);
 		free(PRE);
+	}
 }
 READER* ReaderManagement_2_ModifyReaderInformation(READER* Head, READER* NewNode) {
 		READER* CUR = (READER*)malloc(sizeof(READER));

@@ -328,7 +328,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 									printf("Please input the book name you are to inquire\n");
 									scanf("%9s", input);
 									printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
-									PrintInquireResult(arr, arr_bookname, cnt1, input, next, cnt_temp, index_len, hit, ini, len);
+									PrintInquireResult(arr, arr_bookname, cnt1, input, next, cnt_temp, index_len, hit, ini, len,cnt1);
 									free(input);
 								}
 							}
@@ -346,7 +346,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 									printf("Please input the author name you are to inquire\n");
 									scanf("%9s", input);
 									printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
-									PrintInquireResult(arr, arr_authorname, cnt2, input, next, cnt_temp, index_len, hit, ini, len);
+									PrintInquireResult(arr, arr_authorname, cnt2, input, next, cnt_temp, index_len, hit, ini, len,cnt2);
 									free(input);
 								}
 							}
@@ -364,7 +364,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 									printf("Please input the press you are to inquire\n");
 									scanf("%9s", input);
 									printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
-									PrintInquireResult(arr, arr_press, cnt3, input, next, cnt_temp, index_len, hit, ini, len);
+									PrintInquireResult(arr, arr_press, cnt3, input, next, cnt_temp, index_len, hit, ini, len,cnt3);
 									free(input);
 								}
 							}
@@ -511,7 +511,6 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 			}
 		}
 		else if (ALT_Lev1 == 5) {/* FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI*/
-			
 		USER* CURU = (USER*)malloc(sizeof(USER));
 		if (CURU == NULL) {
 			printf("Fail to apply for memory\n");
@@ -589,6 +588,59 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 		}
 		if (arr != NULL) { 
 			fwrite(arr, sizeof(BOOK), len, FPMB); 
+			INDEX* temp = (INDEX*)malloc(sizeof(INDEX));
+			if (temp == NULL) {
+				printf("Fail to apply for memory\n");
+				exit(1);
+			}
+			else {
+				temp = CreatIndex(arr, len, arr_bookname, cnt1, 1);
+				INDEX* bookname = (INDEX*)malloc(sizeof(INDEX) * *cnt1);
+				if (bookname == NULL) {
+					printf("Fail to apply for memory\n");
+					exit(1);
+				}
+				else {
+					INDEX* ptr = bookname;
+					for (INDEX* ptr_temp = temp; (ptr_temp - temp) < *cnt1; ptr_temp++, ptr++) {
+						strcpy(ptr->str, ptr_temp->str);
+						ptr->ini = ptr_temp->ini;
+						ptr->len = ptr_temp->len;
+					}
+					arr_bookname = bookname;
+				}
+				temp = CreatIndex(arr, len, arr_authorname, cnt2, 2);
+				INDEX* authorname = (INDEX*)malloc(sizeof(INDEX) * *cnt2);
+				if (authorname == NULL) {
+					printf("Fail to apply for memory\n");
+					exit(1);
+				}
+				else {
+					INDEX* ptr = authorname;
+					for (INDEX* ptr_temp = temp; (ptr_temp - temp) < *cnt2; ptr_temp++, ptr++) {
+						strcpy(ptr->str, ptr_temp->str);
+						ptr->ini = ptr_temp->ini;
+						ptr->len = ptr_temp->len;
+					}
+					arr_authorname = authorname;
+				}
+				temp = CreatIndex(arr, len, arr_press, cnt3, 3);
+				INDEX* press = (INDEX*)malloc(sizeof(INDEX) * *cnt2);
+				if (press == NULL) {
+					printf("Fail to apply for memory\n");
+					exit(1);
+				}
+				else {
+					INDEX* ptr = press;
+					for (INDEX* ptr_temp = temp; (ptr_temp - temp) < *cnt3; ptr_temp++, ptr++) {
+						strcpy(ptr->str, ptr_temp->str);
+						ptr->ini = ptr_temp->ini;
+						ptr->len = ptr_temp->len;
+					}
+					arr_press = press;
+				}
+				free(temp);
+			}
 			free(arr);
 		}
 		if (arr_bookname != NULL) {

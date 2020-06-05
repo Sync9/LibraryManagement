@@ -44,10 +44,10 @@ INDEX* BookManagement_By(BOOK* arr,int len,INDEX* index,int* cnt,int stat){
 	return index;
 	free(cnt);
 }
-void PrintInquireResult(BOOK* arr, INDEX* index, int* cnt2, char* input, int next,int cnt_temp,int index_len,int hit,int ini,int len) {
-	INDEX* ptr;
+void PrintInquireResult(BOOK* arr, INDEX* index, int* cnt2, char* input, int next,int cnt_temp,int index_len,int hit,int ini,int len,int* cnt) {
+	INDEX* ptr=(INDEX*)malloc(sizeof(INDEX));
 	ptr = index;
-	for (; (ptr - index) < *cnt2; ptr++) {
+	for (; (ptr - index) < *cnt; ptr++) {
 		if (strcmp(ptr->str, input) == 0) {
 			next = 0;
 			cnt_temp = 0;

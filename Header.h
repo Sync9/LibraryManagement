@@ -65,11 +65,11 @@ READER* ReaderManagement_5_DisplayReaderInformation(READER* Head);
 BOOK* BookManagement_1_BookInformationInput(BOOK* arr, BOOK* bookinfo, int len, int cnt);
 void BookManagement_2_BookInformationModify(BOOK* arr, int len, BOOK* info);
 INDEX* BookManagement_By(BOOK* arr, int len, INDEX* index, int* cnt, int stat);
-void PrintInquireResult(BOOK* arr, INDEX* index, int* cnt2, char* input, int next, int cnt_temp, int index_len, int hit, int ini, int len);
+void PrintInquireResult(BOOK* arr, INDEX* index, int* cnt2, char* input, int next, int cnt_temp, int index_len, int hit, int ini, int len,int* cnt);
 /*DifferentRole*/
 void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press);
 void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, LOAR* LRINF, FILE* FPU, FILE* FPR, FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, FILE* FPLR, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press);
-void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRINF, FILE* FPU,FILE* FPR,FILE* FPLR,FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press);
+void Reader(int ALT_Lev1, int ALT_Lev2, int UID, USER* UINF, READER* RINF, LOAR* LRINF, FILE* FPU, FILE* FPR, FILE* FPLR, FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press);
 /*Tool*/
 void InsertionSort(BOOK* arr, int len);
 int BinarySearch(BOOK* arr, int len, int key);

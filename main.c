@@ -7,7 +7,7 @@ int main()
 	char BookNameIndex[] = {PATHBNI};
 	char AuthorNameIndex[] = { PATHANI };
 	char PressIndex[] = { PATHPI };
-	char LOARFile[] = { PATHLR };
+	char LOARFile = { PATHLR };
 	/************************************************************/
 	FILE* FPMB = fopen(PATHMB, "ab+");
 	if (FPMB == NULL) {
@@ -97,12 +97,12 @@ int main()
 		printf("Your Password\n");
 		scanf("%s", firstuser->Password);
 		printf("%s is your Password\n", firstuser->Password);
-		printf("Congratulations! You have become the fist System Administrator\n");
+		printf("Congratulations! You have become the first System Administrator\n");
 	}
 	else fseek(FPU, -1, SEEK_CUR);
-	free(c);
-	free(firstuser);
 	UINF=USERInformationLinkedListCreat(FPU,UserFile,UINF,firstuser);
+	free(firstuser);
+	free(c);
 	USER* Signin = (USER*)malloc(sizeof(USER));
 	cnt = 0;
 	if (Login(cnt, UINF, Signin) == 0) { 
@@ -150,7 +150,6 @@ int main()
 			free(arr_press);
 			free(cnt_pressname);
 		}
-		printf("All the information needed to be saved has been saved\n");
 		fclose(FPMB);
 		fclose(FPPI);
 		fclose(FPBNI);
@@ -159,7 +158,7 @@ int main()
 	}
 	else {
 		int ALT_Lev1 = 0;//ALT=AlternativeFeature
-		int ALT_Lev2 = 0;//ALT_Lev2=AlternativeFeatureLevel2Â¡Â¡
+		int ALT_Lev2 = 0;//ALT_Lev2=AlternativeFeatureLevel2¡¡
 		if (Signin->UL == 3) {
 			FILE* FPR = fopen(PATHR, "ab+");
 			if (FPR == NULL) {
@@ -178,7 +177,7 @@ int main()
 			LibraryAdministrator(ALT_Lev1, ALT_Lev2, UINF, RINF, LRINF,FPU, FPR,FPMB,FPPI,FPBNI,FPANI,FPLR,arr_mainfile,len,arr_authorname,arr_bookname,arr_press);
 		}
 		else if (Signin->UL == 2)	SystemAdministrator(ALT_Lev1, ALT_Lev2, UINF, FPU, FPMB, FPPI, FPBNI, FPANI, arr_mainfile, len, arr_authorname, arr_bookname, arr_press);
-		else if (Signin->UL == 1)	{
+		else if (Signin->UL == 1) {
 			FILE* FPR = fopen(PATHR, "ab+");
 			if (FPR == NULL) {
 				printf("Fail to open the file named ReaderInformation:(\n");

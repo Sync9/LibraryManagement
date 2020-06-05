@@ -130,6 +130,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 									int offset = 0;
 									do {
 										printf("Please input the recordID you are to inquire\n");
+										printf("RecordID couldn't smaller than 1 \n");
 										scanf("%d", &temp->RecordID);
 									} while (temp->RecordID < 1);
 									InsertionSort(arr, len);
@@ -160,7 +161,8 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 								else {
 									printf("Please input the book name you are to inquire\n");
 									scanf("%9s", input);
-									PrintInquireResult(arr, arr_bookname, cnt1, input, next, cnt_temp, index_len, hit, ini, len);
+									printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
+									PrintInquireResult(arr, arr_bookname, cnt1, input, next, cnt_temp, index_len, hit, ini, len,cnt1);
 									free(input);
 								}
 							}
@@ -177,7 +179,8 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 								else {
 									printf("Please input the author name you are to inquire\n");
 									scanf("%9s", input);
-									PrintInquireResult(arr, arr_authorname, cnt2, input, next, cnt_temp, index_len, hit, ini, len);
+									printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
+									PrintInquireResult(arr, arr_authorname, cnt2, input, next, cnt_temp, index_len, hit, ini, len,cnt2);
 									free(input);
 								}
 							}
@@ -194,7 +197,8 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 								else {
 									printf("Please input the press you are to inquire\n");
 									scanf("%9s", input);
-									PrintInquireResult(arr, arr_press, cnt3, input, next, cnt_temp, index_len, hit, ini, len);
+									printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
+									PrintInquireResult(arr, arr_press, cnt3, input, next, cnt_temp, index_len, hit, ini, len,cnt3);
 									free(input);
 								}
 							}
@@ -227,7 +231,8 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 						exit(1);
 					}
 					else {
-						printf("Plase input your readerID\n");
+						printf("Plase input your ReaderID\n");
+						printf("ReaderID couldn't be negative\n");
 						scanf("%d", &temp->uid);
 						READER* CUR = RINF;
 						while (CUR && CUR->UID != temp->uid) {
@@ -244,6 +249,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 							}
 							else {
 								printf("Please input the BookID you are to order\n");
+								printf("BookID couldn't smaller than 1 \n");
 								scanf("%d", &temp->bookID);
 								BOOK* ptr = arr;
 								for (; (ptr - arr) < len; ptr++) if (ptr->BookID == temp->bookID) break;
@@ -354,6 +360,59 @@ void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRI
 	}
 	if (arr != NULL) {
 		fwrite(arr, sizeof(BOOK), len, FPMB);
+		INDEX* temp = (INDEX*)malloc(sizeof(INDEX));
+		if (temp == NULL) {
+			printf("Fail to apply for memory\n");
+			exit(1);
+		}
+		else {
+			temp = CreatIndex(arr, len, arr_bookname, cnt1, 1);
+			INDEX* bookname = (INDEX*)malloc(sizeof(INDEX) * *cnt1);
+			if (bookname == NULL) {
+				printf("Fail to apply for memory\n");
+				exit(1);
+			}
+			else {
+				INDEX* ptr = bookname;
+				for (INDEX* ptr_temp = temp; (ptr_temp - temp) < *cnt1; ptr_temp++, ptr++) {
+					strcpy(ptr->str, ptr_temp->str);
+					ptr->ini = ptr_temp->ini;
+					ptr->len = ptr_temp->len;
+				}
+				arr_bookname = bookname;
+			}
+			temp = CreatIndex(arr, len, arr_authorname, cnt2, 2);
+			INDEX* authorname = (INDEX*)malloc(sizeof(INDEX) * *cnt2);
+			if (authorname == NULL) {
+				printf("Fail to apply for memory\n");
+				exit(1);
+			}
+			else {
+				INDEX* ptr = authorname;
+				for (INDEX* ptr_temp = temp; (ptr_temp - temp) < *cnt2; ptr_temp++, ptr++) {
+					strcpy(ptr->str, ptr_temp->str);
+					ptr->ini = ptr_temp->ini;
+					ptr->len = ptr_temp->len;
+				}
+				arr_authorname = authorname;
+			}
+			temp = CreatIndex(arr, len, arr_press, cnt3, 3);
+			INDEX* press = (INDEX*)malloc(sizeof(INDEX) * *cnt2);
+			if (press == NULL) {
+				printf("Fail to apply for memory\n");
+				exit(1);
+			}
+			else {
+				INDEX* ptr = press;
+				for (INDEX* ptr_temp = temp; (ptr_temp - temp) < *cnt3; ptr_temp++, ptr++) {
+					strcpy(ptr->str, ptr_temp->str);
+					ptr->ini = ptr_temp->ini;
+					ptr->len = ptr_temp->len;
+				}
+				arr_press = press;
+			}
+			free(temp);
+		}
 		free(arr);
 	}
 	if (arr_bookname != NULL) {
