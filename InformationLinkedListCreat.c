@@ -1,7 +1,6 @@
 #include"Header.h"
 USER* USERInformationLinkedListCreat(FILE* FP,char* path,USER* Head,USER* firstuser) {
 		int c = fgetc(FP);
-		int cnt = 0;
 		USER* head_ptr = (USER*)malloc(sizeof(USER));
 		head_ptr = Head;
 		if (c != EOF) {
@@ -12,12 +11,8 @@ USER* USERInformationLinkedListCreat(FILE* FP,char* path,USER* Head,USER* firstu
 					NewNode->NEXT = NULL;
 					fseek(FP, -1, SEEK_CUR);
 					fread(NewNode, sizeof(USER), 1, FP);
-					if (cnt == 0) { 
-						head_ptr->NEXT = NewNode;
-						head_ptr = head_ptr->NEXT;
-						cnt++;
-					}
-					else head_ptr->NEXT = NewNode;
+					head_ptr->NEXT = NewNode;
+					head_ptr = head_ptr->NEXT;
 					c = fgetc(FP);
 				}
 			fclose(FP);
@@ -29,6 +24,7 @@ USER* USERInformationLinkedListCreat(FILE* FP,char* path,USER* Head,USER* firstu
 		}
 		return Head;
 		free(head_ptr);
+}
 }
 READER* READERInformationLinkedListCreat(FILE*FP,char* path,READER* Head){
 		READER* head_ptr = (READER*)malloc(sizeof(READER));
