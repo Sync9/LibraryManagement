@@ -269,7 +269,8 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 								printf("Please input the sum of the book\n");
 								printf("The sum of the book lent out couldn't be negative\n");
 								scanf("%d", &saved_info->Total);
-							} while (saved_info->Total < 0);							
+							} while (saved_info->Total < 0);
+							BookManagement_2_BookInformationModify(arr, len, saved_info);
 							free(saved_info);
 						}
 					}
