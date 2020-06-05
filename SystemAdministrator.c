@@ -18,25 +18,12 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 	while (ALT_Lev1 != 5) {
 		ALT_Lev1 = 0;
 		ALT_Lev2 = 0;
-		int scanf_return = 0;
-		while (scanf_return != 1) {
-			printf("**********************************\n\t1.UserManagement\n\t2.ReaderManagement\n\t3.BookManagement\n\t4.BookCirculationManagement\n\t5.Exit\n***********************************\n");
-			scanf_return = scanf("%d", &ALT_Lev1);
-			scanf("%*[^\n]");
-			scanf("%*c");
-			if (scanf_return != 1) printf("Please input the number you choosed again\n");
-		}
-		scanf_return = 0;
+		printf("**********************************\n\t1.UserManagement\n\t2.ReaderManagement\n\t3.BookManagement\n\t4.BookCirculationManagement\n\t5.Exit\n***********************************\n");
+		scanf("%d", &ALT_Lev1);
 		if (ALT_Lev1 == 1) {
 			while (ALT_Lev2 != 6) {
-				while (scanf_return != 1) {
-					printf("**********************************\n\t1.InputUserInformation\n\t2.ModifyUserInformation\n\t3.DeleteUserInformation\n\t4.DisplayUserInformation\n\t5.ModifyUserPassword\n\t6.BackToPrevious\n***********************************\n");
-					scanf_return = scanf("%d", &ALT_Lev2);
-					scanf("%*[^\n]");
-					scanf("%*c");
-					if (scanf_return != 1) printf("Please input the number you choosed again\n");
-				}
-				scanf_return = 0;
+				printf("**********************************\n\t1.InputUserInformation\n\t2.ModifyUserInformation\n\t3.DeleteUserInformation\n\t4.DisplayUserInformation\n\t5.ModifyUserPassword\n\t6.BackToPrevious\n***********************************\n");
+				scanf("%d", &ALT_Lev2);
 				USER* saved_info = (USER*)malloc(sizeof(USER));
 				if (cnt1 == NULL) {
 					printf("Fail to apply for memory\n");
@@ -44,102 +31,55 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 				}
 				else {
 					if (ALT_Lev2 == 1) {
-						while (scanf_return != 1) {
+						do {
 							printf("Please input the UserID you wanna input\n");
-							scanf_return = scanf("%d", &saved_info->UID);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->UID < 0) {
-								printf("UserID couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the UserID again\n");
-						}
-						scanf_return = 0;
+							printf("UserID couldn't be negative\n");
+							scanf("%d", &saved_info->UID);
+						} while (saved_info->UID < 0);
 						printf("Please input the Password\n");
 						scanf("%9s", saved_info->Password);
-						while (scanf_return != 1) {
+						do {
 							printf("Please input the UserLevel\n");
 							printf("1----Reader\n");
 							printf("2----SystemAdministrator\n");
 							printf("3----LibraryAdministrator\n");
-							scanf_return = scanf("%d", &saved_info->UL);
-							if (saved_info->UL != 1 && saved_info->UL != 2 && saved_info->UL != 3) {
-								printf("Please pick your chioce from follows number again\n");
-								printf("1----Reader\n");
-								printf("2----SystemAdministrator\n");
-								printf("3----LibraryAdministrator\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input your choice again\n");
-						}
-						scanf_return = 0;
+							scanf("%d", &saved_info->UL);
+						} while (saved_info->UL != 1 && saved_info->UL != 2 && saved_info->UL != 3);
 						UINF = UserManagement_1_UserInformationInput(UINF, saved_info);
 					}
 					else if (ALT_Lev2 == 2) {
-						while (scanf_return != 1) {
+						do {
 							printf("Please input the UserID you wanna modify\n");
-							scanf_return = scanf("%d", &saved_info->UID);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->UID < 0) {
-								printf("UserID couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the UserID again\n");
-						}
-						scanf_return = 0;
+							printf("UserID couldn't be negative\n");
+							scanf("%d", &saved_info->UID);
+						} while (saved_info->UID < 0);
 						printf("Please input the Password\n");
 						scanf("%9s", saved_info->Password);
-						while (scanf_return != 1) {
+						do {
 							printf("Please input the UserLevel\n");
 							printf("1----Reader\n");
 							printf("2----SystemAdministrator\n");
 							printf("3----LibraryAdministrator\n");
-							scanf_return = scanf("%d", &saved_info->UL);
-							if (saved_info->UL != 1 && saved_info->UL != 2 && saved_info->UL != 3) {
-								printf("Please pick your chioce from follows number again\n");
-								printf("1----Reader\n");
-								printf("2----SystemAdministrator\n");
-								printf("3----LibraryAdministrator\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input your choice again\n");
-						}
-						scanf_return = 0;
+							scanf("%d", &saved_info->UL);
+						} while (saved_info->UL != 1 && saved_info->UL != 2 && saved_info->UL != 3);
 						UINF = UserManagement_2_ModifyUserInformation(UINF, saved_info);
 					}
 					else if (ALT_Lev2 == 3) {
-						while (scanf_return != 1) {
+						do {
 							printf("Whose password are you going to Delete?\nPlease input his/her UserID\n");
-							scanf_return = scanf("%d", &saved_info->UID);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->UID < 0) {
-								printf("UserID couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the UserID again\n");
-						}
-						scanf_return = 0;
+							scanf("%d", &saved_info->UID);
+						} while (saved_info->UID < 0);
 						UINF = UserManagement_3_DeleteUserInformation(UINF, saved_info);
 					}
 					else if (ALT_Lev2 == 4) {
 						UINF = UserManagement_4_DisplayUserInformation(UINF);
 					}
 					else if (ALT_Lev2 == 5) {
-						while (scanf_return != 1) {
+						do {
 							printf("Whose password are you going to change?\nPlease input his/her UserID\n");
-							scanf_return = scanf("%d", &saved_info->UID);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->UID < 0) {
-								printf("UserID couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the UserID again\n");
-						}
-						scanf_return = 0;
+							printf("UserID couldn't be negative\n");
+							scanf("%d", &saved_info->UID);
+						} while (saved_info->UID < 0);
 						printf("Please input the password you are to apply\n");
 						scanf("%9s", saved_info->Password);
 						UINF = UserManagement_5_ModifyUserPassword(UINF, saved_info);
@@ -215,14 +155,10 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 						free(temp);
 					}
 				}
-				while (scanf_return != 1) {
+				do {
 					printf("**************************************\n\t1.InputBookInformation\n\t2.ModifyBookInformation\n\t3.InquireBookInformation\n\t4.TotalStatistics\n\t5.BackToPrevious\n**************************************\n");
-					scanf_return = scanf("%d", &ALT_Lev2);
-					scanf("%*[^\n]");
-					scanf("%*c");
-					if (scanf_return != 1) printf("Please input the number you choosed again\n");
-				}
-				scanf_return = 0;
+					scanf("%d", &ALT_Lev2);
+				}while (ALT_Lev2 < 1 && ALT_Lev2>5);
 				if (ALT_Lev2 == 1 || ALT_Lev2 == 2) printf("Sorry,it's seems that you have no access to the feature:(\n");
 				else if (ALT_Lev2 == 3) {
 					int ALT_Lev3 = 0;
@@ -232,14 +168,8 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 						int index_len = 0;
 						int hit = 0;
 						int ini = 0;
-						while (scanf_return != 1) {
-							printf("**************************************\n\t1.By RecordID\n\t2.By BookName\n\t3.By AuthorName\n\t4.By Press\n\t5.BackToPrevious\n**************************************\n");
-							scanf_return = scanf("%d", &ALT_Lev3);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (scanf_return != 1) printf("Please input the number you choosed again\n");
-						}
-						scanf_return = 0;
+						printf("**************************************\n\t1.By RecordID\n\t2.By BookName\n\t3.By AuthorName\n\t4.By Press\n\t5.BackToPrevious\n**************************************\n");
+						scanf("%d", &ALT_Lev3);	
 						if (ALT_Lev3 == 1) {
 							if (arr == NULL) printf("There is no information\n");
 							else {
@@ -250,18 +180,11 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 								}
 								else {
 									int offset = 0;
-									while (scanf_return != 1) {
+									do {
 										printf("Please input the recordID you are to inquire\n");
-										scanf_return = scanf("%d", &temp->RecordID);
-										scanf("%*[^\n]");
-										scanf("%*c");
-										if (temp->RecordID < 0) {
-											printf("ID couldn't be a negative number\n");
-											scanf_return = 0;
-										}
-										if (scanf_return != 1) printf("Please input the RecordID again\n");
-									}
-									scanf_return = 0;
+										printf("RecordID couldn't be negative\n");
+										scanf("%d", &temp->RecordID);
+									} while (temp->RecordID < 0);
 									InsertionSort(arr, len);
 									offset = BinarySearch(arr, len, temp->RecordID);
 									if (offset == -1) printf("The item isn't exsist\n");
@@ -290,6 +213,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 								else {
 									printf("Please input the book name you are to inquire\n");
 									scanf("%9s", input);
+									printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
 									PrintInquireResult(arr, arr_bookname, cnt1, input, next, cnt_temp, index_len, hit, ini, len);
 									free(input);
 								}
@@ -307,6 +231,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 								else {
 									printf("Please input the author name you are to inquire\n");
 									scanf("%9s", input);
+									printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
 									PrintInquireResult(arr, arr_authorname, cnt2, input, next, cnt_temp, index_len, hit, ini, len);
 									free(input);
 								}
@@ -324,6 +249,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, FILE* FP, FILE*
 								else {
 									printf("Please input the press you are to inquire\n");
 									scanf("%9s", input);
+									printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
 									PrintInquireResult(arr, arr_press, cnt3, input, next, cnt_temp, index_len, hit, ini, len);
 									free(input);
 								}
