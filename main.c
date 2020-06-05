@@ -99,8 +99,9 @@ int main()
 		printf("%s is your Password\n", firstuser->Password);
 		printf("Congratulations! You have become the fist System Administrator\n");
 	}
-	else firstuser = NULL;
+	else fseek(FPU, -1, SEEK_CUR);
 	free(c);
+	free(firstuser);
 	UINF=USERInformationLinkedListCreat(FPU,UserFile,UINF,firstuser);
 	USER* Signin = (USER*)malloc(sizeof(USER));
 	cnt = 0;
