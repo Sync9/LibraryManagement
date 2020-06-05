@@ -1,6 +1,7 @@
 #include"Header.h"
 int SignInAuthorize(USER* Head, USER* Signin) {
-	
+	USER* savedHead = (USER*)malloc(sizeof(USER));
+	savedHead = Head;
 	while (Head->NEXT!=NULL&&Head->UID!=Signin->UID) Head = Head->NEXT;
 	if (Head->UID == Signin->UID && strcmp(Head->Password, Signin->Password) == 0 && Head->UL == Signin->UL) {
 		printf("Sign in successfully\n");
@@ -32,6 +33,7 @@ int SignInAuthorize(USER* Head, USER* Signin) {
 		printf("Wrong Password\n");
 		printf("Wrong UserLevel\n");
 	}
+	Head = savedHead;
 }
 int Login(int cnt, USER* UINF, USER* Signin) {
 	do {
