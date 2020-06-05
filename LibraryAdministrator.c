@@ -189,8 +189,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 						free(temp);
 					}
 				}
+				do{
 				printf("**************************************\n\t1.InputBookInformation\n\t2.ModifyBookInformation\n\t3.InquireBookInformation\n\t4.TotalStatistics\n\t5.BackToPrevious\n**************************************\n");
 				scanf("%d", &ALT_Lev2);
+				} while (ALT_Lev2 < 1 && ALT_Lev2>5);
 				if (ALT_Lev2 == 1) {
 					if (arr == NULL) {
 						arr = (BOOK*)malloc(sizeof(BOOK));
