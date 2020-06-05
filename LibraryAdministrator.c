@@ -19,25 +19,12 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 		ALT_Lev1 = 0;
 		ALT_Lev2 = 0;
 		int time = 1;
-		int scanf_return=0;
-		while (scanf_return != 1) {
-			printf("**********************************\n\t1.UserManagement\n\t2.ReaderManagement\n\t3.BookManagement\n\t4.BookCirculationManagement\n\t5.Exit\n***********************************\n");
-			scanf_return = scanf("%d", &ALT_Lev1);
-			scanf("%*[^\n]");
-			scanf("%*c");
-			if (scanf_return != 1) printf("Please input the number you choosed again\n");
-		}
-		scanf_return = 0;
+		printf("**********************************\n\t1.UserManagement\n\t2.ReaderManagement\n\t3.BookManagement\n\t4.BookCirculationManagement\n\t5.Exit\n***********************************\n");
+		scanf("%d", &ALT_Lev1);
 		if (ALT_Lev1 == 1) {
 			while (ALT_Lev2 != 6) {
-				while (scanf_return != 1) {
 					printf("**********************************\n\t1.InputUserInformation\n\t2.ModifyUserInformation\n\t3.DeleteUserInformation\n\t4.DisplayUserInformation\n\t5.ModifyUserPassword\n\t6.BackToPrevious\n***********************************\n");
-					scanf_return=scanf("%d", &ALT_Lev2);
-					scanf("%*[^\n]");
-					scanf("%*c");
-					if (scanf_return != 1) printf("Please input the number you choosed again\n");
-				}
-				scanf_return = 0;
+					scanf("%d", &ALT_Lev2);
 				if (ALT_Lev2 == 2) {
 					USER* saved_info = (USER*)malloc(sizeof(USER));
 					if (saved_info == NULL) {
@@ -45,22 +32,12 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 						exit(1);
 					}
 					else {
-						while (scanf_return != 1) {
+						do {
 							printf("Whose password are you going to change?\nPlease input his/her UserID\n");
-							scanf_return = scanf("%d", &saved_info->UID);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (scanf_return != 1) printf("Please input the User ID again\n");
-						}
-						scanf_return = 0;
-						while (scanf_return != 1) {
-							printf("Please input the password you are to apply\n");
-							scanf_return=scanf("%9s", saved_info->Password);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (scanf_return != 1) printf("Please input the password again\n");
-						}
-						scanf_return = 0;
+							scanf("%d", &saved_info->UID);
+						} while (saved_info->UID < 0);
+						printf("Please input the password you are to apply\n");
+						scanf("%9s", saved_info->Password);
 						UserManagement_2_ModifyUserInformation(UINF, saved_info);
 						free(saved_info);
 					}
@@ -72,14 +49,8 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 		}/*Paraments ReaderMangament(int ALT, READER* Head, int* RID, char* Name, char* WorkPlace, char* PhoneNumber, int* AvailableBook, int* UnAvailableBook)*/
 		else if (ALT_Lev1 == 2) {
 			while (ALT_Lev2 != 6) {
-				while (scanf_return != 1) {
-					printf("**********************************\n\t1.InputReaderInformation\n\t2.ModifyReaderInformation\n\t3.DeleteReaderInformation\n\t4.FinddReaderInformation\n\t5.DisplayReaderInformation\n\t6.BackToPrevious\n***********************************\n");
-					scanf_return=scanf("%d", &ALT_Lev2);
-					scanf("%*[^\n]");
-					scanf("%*c");
-					if (scanf_return != 1) printf("Please input the number you choosed again\n");
-				}
-				scanf_return = 0;
+				printf("**********************************\n\t1.InputReaderInformation\n\t2.ModifyReaderInformation\n\t3.DeleteReaderInformation\n\t4.FindReaderInformation\n\t5.DisplayReaderInformation\n\t6.BackToPrevious\n***********************************\n");
+				scanf("%d", &ALT_Lev2);
 				READER* saved_info = (READER*)malloc(sizeof(READER));
 				if (saved_info == NULL) {
 					printf("Fail to apply for memory\n");
@@ -87,145 +58,64 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 				}
 				else {
 					if (ALT_Lev2 == 1) {
-						while (scanf_return != 1) {
+						do {
 							printf("Please input the ReaderID you wanna input\n");
-							scanf_return=scanf("%d", &saved_info->UID);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->UID < 0) {
-								printf("ID couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the ReaderID again\n");
-						}
-						scanf_return = 0;
-						while (scanf_return != 1) {
-							printf("Please input the Name\n");
-							scanf_return=scanf("%9s", saved_info->Name);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (scanf_return != 1) printf("Please input the name again\n");
-						}
-						scanf_return = 0;
-						while (scanf_return != 1) {
-							printf("Please input the WorkPlace\n");
-							scanf_return=scanf("%15s", saved_info->WorkPlace);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (scanf_return != 1) printf("Please input the WorkPlace again\n");
-						}
-						scanf_return = 0;
-						while (scanf_return != 1) {
-							printf("Please input the PhoneNumber\n");
-							scanf_return=scanf("%12s", saved_info->PhoneNumber);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (scanf_return != 1) printf("Please input the phone number again\n");
-						}
-						scanf_return = 0;
-						while (scanf_return != 1) {
-							printf("Please input the AvailableBook\n");
-							scanf_return=scanf("%d", &saved_info->AvailableBook);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->AvailableBook < 0) {
-								printf("Available Book couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the number of Available Book again\n");
-						}
-						scanf_return = 0;
-						while (scanf_return != 1) {
-							printf("Please input the UnavailableBook\n");
-							scanf_return=scanf("%d", &saved_info->UnAvailableBook);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->UnAvailableBook< 0) {
-								printf("Unavailable Book couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the number of Unavailable Book again\n");
-						}
-						scanf_return = 0;
-						RINF = ReaderManagement_1_ReaderInformationInput(RINF, saved_info);
-					}
-					else if (ALT_Lev2 == 2) {
-						int* temp = (int*)malloc(sizeof(int));
-						*temp = 0;
-						while (scanf_return != 1) {
-							printf("Please input the ReaderID you wanna input\n");
-							scanf_return=scanf("%d", &saved_info->UID);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->UID < 0) {
-								printf("ID couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the ReaderID again\n");
-						}
-						scanf_return = 0;
+							scanf("%d", &saved_info->UID);
+						} while (saved_info->UID < 0);
 						printf("Please input the Name\n");
 						scanf("%9s", saved_info->Name);
 						printf("Please input the WorkPlace\n");
 						scanf("%15s", saved_info->WorkPlace);
 						printf("Please input the PhoneNumber\n");
 						scanf("%12s", saved_info->PhoneNumber);
-						while (scanf_return != 1) {
+						do {
 							printf("Please input the AvailableBook\n");
-							scanf_return = scanf("%d", &saved_info->AvailableBook);
-							scanf("%*[^\n]");
-							scanf("%*c");	
-							if (saved_info->AvailableBook < 0) {
-								printf("Available Book couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the number of available book again\n");
-						}
-						scanf_return = 0;
-						while (scanf_return != 1) {
-							printf("Please input the UnAvailableBook\n");
-							scanf_return=scanf("%d", &saved_info->UnAvailableBook);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->UnAvailableBook < 0) {
-								printf("Unavailable Book couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the number of unavailable book again\n");
-						}
-						scanf_return = 0;
+							scanf("%d", &saved_info->AvailableBook);
+						} while (saved_info->AvailableBook < 0);
+						do{
+						printf("Please input the UnavailableBook\n");
+						scanf("%d", &saved_info->UnAvailableBook);
+						} while (saved_info->UnAvailableBook < 0);
+						RINF = ReaderManagement_1_ReaderInformationInput(RINF, saved_info);
+					}
+					else if (ALT_Lev2 == 2) {
+						int temp = (int)malloc(sizeof(int));
+						temp = 0;
+						do {
+							printf("Please input the ReaderID you wanna input\n");
+							scanf("%d", &saved_info->UID);
+						} while (saved_info->UID < 0);
+						printf("Please input the Name\n");
+						scanf("%9s", saved_info->Name);
+						printf("Please input the WorkPlace\n");
+						scanf("%15s", saved_info->WorkPlace);
+						printf("Please input the PhoneNumber\n");
+						scanf("%12s", saved_info->PhoneNumber);
+						do {
+							printf("Please input the AvailableBook\n");
+							scanf("%d", &saved_info->AvailableBook);
+						} while (saved_info->AvailableBook < 0);
+						do {
+							printf("Please input the UnavailableBook\n");
+							scanf("%d", &saved_info->UnAvailableBook);
+						} while (saved_info->UnAvailableBook < 0);
 						RINF = ReaderManagement_2_ModifyReaderInformation(RINF, saved_info);
 						free(temp);
 					}
 					else if (ALT_Lev2 == 3) {
-						while (scanf_return != 1) {
+						do {
 							printf("Which reader are you going to Delete?\nPlease input his/her ReaderID\n");
-							scanf_return=scanf("%d", &saved_info->UID);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->UID < 0) {
-								printf("ID couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the ReaderID again\n");
-						}
-						scanf_return = 0;
+							scanf("%d", &saved_info->UID);	
+						} while (saved_info->UID < 0);
 						RINF = ReaderManagement_3_DeleteReaderInformation(RINF, saved_info);
 
 					}
 					else if (ALT_Lev2 == 4) {
-					while (scanf_return != 1) {
-						printf("Which reader are you going to find?\nPlease input his/her ReaderID\n");
-						scanf_return = scanf("%d", &saved_info->UID);
-						scanf("%*[^\n]");
-						scanf("%*c");
-						if (saved_info->UID < 0) {
-							printf("ID couldn't be a negative number\n");
-							scanf_return = 0;
-						}
-						if (scanf_return != 1) printf("Please input the ReaderID again\n");
-					}
-					scanf_return = 0;
+						do {
+							printf("Which reader are you going to find?\nPlease input his/her ReaderID\n");
+							scanf("%d", &saved_info->UID);
+						} while (saved_info->UID < 0);
+						
 						RINF = ReaderManagement_4_inidReaderInformation(RINF, saved_info);
 					}
 					else if (ALT_Lev2 == 5) {
@@ -299,14 +189,8 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 						free(temp);
 					}
 				}
-				while (scanf_return != 1) {
-					printf("**************************************\n\t1.InputBookInformation\n\t2.ModifyBookInformation\n\t3.InquireBookInformation\n\t4.TotalStatistics\n\t5.BackToPrevious\n**************************************\n");
-					scanf_return=scanf("%d", &ALT_Lev2);
-					scanf("%*[^\n]");
-					scanf("%*c");
-					if (scanf_return != 1) printf("Please input the number you choosed again\n");
-				}
-				scanf_return = 0;
+				printf("**************************************\n\t1.InputBookInformation\n\t2.ModifyBookInformation\n\t3.InquireBookInformation\n\t4.TotalStatistics\n\t5.BackToPrevious\n**************************************\n");
+				scanf("%d", &ALT_Lev2);
 				if (ALT_Lev2 == 1) {
 					if (arr == NULL) {
 						arr = (BOOK*)malloc(sizeof(BOOK));
@@ -321,60 +205,28 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 						exit(1);
 					}
 					else {
-						while (scanf_return != 1) {
+						do {
 							printf("Please input the RecordID\n");
-							scanf_return=scanf("%d", &saved_info->RecordID);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->RecordID < 0) {
-								printf("RecordID couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the RecordID again\n");
-						}
-						scanf_return = 0;
-						while (scanf_return != 1) {
+							scanf("%d", &saved_info->RecordID);
+						} while (saved_info->RecordID < 1);
+						do {
 							printf("Please input the BookID\n");
-							scanf_return=scanf("%d", &saved_info->BookID);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->BookID < 0) {
-								printf("BookID couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the BookID again\n");
-						}
-						scanf_return = 0;
+							scanf("%d", &saved_info->BookID);
+						} while (saved_info->BookID < 1);
 						printf("Please input the book name\n");
 						scanf("%9s", saved_info->BookName);
 						printf("Please input the author name\n");
 						scanf("%9s", saved_info->AuthorName);
 						printf("Please input the press name\n");
 						scanf("%9s", saved_info->Press);
-						while (scanf_return != 1) {
+						do {
 							printf("Please input the number of the book lent out\n");
-							scanf_return=scanf("%d", &saved_info->LendOut);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->LendOut < 0) { 
-								printf("The book lent out couldn't be a negative number\n"); 
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the number of the book lent again\n");
-						}
-						scanf_return = 0;
-						while (scanf_return != 1) {
+							scanf("%d", &saved_info->LendOut);
+						} while (saved_info->LendOut < 0);
+						do {
 							printf("Please input the sum of the book\n");
-							scanf_return =scanf("%d", &saved_info->Total);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (saved_info->Total < 0) {
-								printf("The sum of books couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the sum of the book again\n");
-						}
-						scanf_return = 0;
+							scanf("%d", &saved_info->Total);
+						} while (saved_info->Total < 0);
 						arr = BookManagement_1_BookInformationInput(arr, saved_info, len, 1);
 						len++;
 						free(saved_info);
@@ -389,42 +241,18 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 							exit(1);
 						}
 						else {
-							while (scanf_return != 1) {
+							do {
 								printf("Please input the RecordID you are to modify\n");
-								scanf_return = scanf("%d", &saved_info->RecordID);
-								scanf("%*[^\n]");
-								scanf("%*c");
-								if (saved_info->RecordID < 0) {
-									printf("ID couldn't be a negative number\n");
-									scanf_return=0;
-								}
-								if (scanf_return != 1) printf("Please input the RecordID you are to modify again\n");
-							}
-							scanf_return = 0;
-							while (scanf_return != 1) {
-								printf("Please input the number of the book lent out you are to modify\n");
-								scanf_return = scanf("%d", &saved_info->LendOut);
-								scanf("%*[^\n]");
-								scanf("%*c");
-								if (saved_info->LendOut < 0) {
-									printf("The book lent out couldn't be a negative number\n");
-									scanf_return = 0;
-								}
-								if (scanf_return != 1) printf("Please input the number of the book lent out you are to modify again\n");
-							}
-							scanf_return = 0;
-							while (scanf_return != 1) {
-								printf("Please input the sum of the book you are to modify\n");
-								scanf_return = scanf("%d", &saved_info->Total);
-								scanf("%*[^\n]");
-								scanf("%*c");
-								if (saved_info->Total < 0) {
-									printf("The sum of books couldn't be a negative number\n");
-									scanf_return = 0;
-								}
-								if (scanf_return != 1) printf("Please input the sum of the book you are to modify again\n");
-							}
-							scanf_return = 0;
+								scanf("%d", &saved_info->RecordID);
+							} while (saved_info->RecordID < 1);
+							do {
+								printf("Please input the number of the book lent out\n");
+								scanf("%d", &saved_info->LendOut);
+							} while (saved_info->LendOut < 0);
+							do {
+								printf("Please input the sum of the book\n");
+								scanf("%d", &saved_info->Total);
+							} while (saved_info->Total < 0);							
 							free(saved_info);
 						}
 					}
@@ -437,14 +265,8 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 						int index_len = 0;
 						int hit = 0;
 						int ini = 0;
-						while (scanf_return != 1) {
-							printf("**************************************\n\t1.By RecordID\n\t2.By BookName\n\t3.By AuthorName\n\t4.By Press\n\t5.BackToPrevious\n**************************************\n");
-							scanf_return=scanf("%d", &ALT_Lev3);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (scanf_return != 1) printf("Please input the number you choosed again\n");
-						}
-						scanf_return = 0;
+						printf("**************************************\n\t1.By RecordID\n\t2.By BookName\n\t3.By AuthorName\n\t4.By Press\n\t5.BackToPrevious\n**************************************\n");
+						scanf("%d", &ALT_Lev3);	
 						if (ALT_Lev3 == 1) {
 							if (arr == NULL) printf("There is no information\n");
 							else {
@@ -455,18 +277,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 								}
 								else {
 									int offset = 0;
-									while (scanf_return != 1) {
+									do {
 										printf("Please input the recordID you are to inquire\n");
-										scanf_return = scanf("%d", &temp->RecordID);
-										scanf("%*[^\n]");
-										scanf("%*c");
-										if (temp->RecordID < 0) {
-											printf("ID couldn't be a negative number\n");
-											scanf_return = 0;
-										}
-										if (scanf_return != 1) printf("Please input the RecordID again\n");
-									}
-									scanf_return = 0;
+										scanf("%d", &temp->RecordID);
+									} while (temp->RecordID < 1);
 									InsertionSort(arr, len);
 									offset = BinarySearch(arr, len, temp->RecordID);
 									if (offset == -1) printf("The item isn't exsist\n");
@@ -555,14 +369,8 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 		}
 		else if (ALT_Lev1 == 4) {
 			while (ALT_Lev2 != 3) {
-				while (scanf_return != 1) {
 					printf("***************************\n\t1.LentOutManagement\n\t2.ReturnManagement\n\t3.BackToPrevious\n*******************************\n");
-					scanf_return = scanf("%d", &ALT_Lev2);
-					scanf("%*[^\n]");
-					scanf("%*c");
-					if (scanf_return != 1) printf("Please input your choice again\n");
-				}
-				scanf_return = 0;
+					scanf("%d", &ALT_Lev2);
 				if (ALT_Lev2 == 1){
 					LOAR* temp = (LOAR*)malloc(sizeof(LOAR));
 					if (temp == NULL) {
@@ -570,16 +378,8 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 						exit(1);
 					}
 					else {
-						while (scanf_return != 1) {
-							printf("Plase input the readerID of the people who borrow the book\n");
-							scanf_return=scanf("%d", &temp->uid);
-							if (temp->uid < 0) {
-								printf("ID couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the RecordID again\n");
-						}
-						scanf_return = 0;
+						printf("Plase input the readerID of the people who borrow the book\n");
+						scanf("%d", &temp->uid);
 						READER* CUR = RINF;
 						while (CUR && CUR->UID != temp->uid) {
 							CUR = CUR->NEXT;
@@ -594,16 +394,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 								continue;
 							}
 							else {
-								while (scanf_return != 1) {
+								do {
 									printf("Please input the BookID the people want to borrow\n");
-									scanf_return = scanf("%d", &temp->bookID);
-									if (temp->bookID < 0) {
-										printf("ID couldn't be a negative number\n");
-										scanf_return = 0;
-									}
-									if (scanf_return != 1) printf("Please input the bookID again\n");
-								}
-								scanf_return = 0;
+									scanf("%d", &temp->bookID);
+								} while (temp->bookID < 1);
 								BOOK* ptr = arr;
 								for (; (ptr - arr) < len; ptr++) if (ptr->BookID == temp->bookID) break;
 								if ((ptr - arr) == len) {
@@ -631,18 +425,8 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 				}
 				else if (ALT_Lev2 == 2){
 					LOAR* temp = (LOAR*)malloc(sizeof(LOAR));
-					while (scanf_return != 1) {
-						printf("Plase input the readerID of the people who return the book\n");
-						scanf_return = scanf("%d", &temp->uid);
-						scanf("%*[^\n]");
-						scanf("%*c");
-						if (temp->uid < 0) {
-							printf("ID couldn't be a negative number\n");
-							scanf_return = 0;
-						}
-						if (scanf_return != 1) printf("Please input the ReaderID again\n");
-					}
-					scanf_return = 0;
+					printf("Plase input the readerID of the people who return the book\n");
+					scanf("%d", &temp->uid);
 					READER* CUR = (READER*)malloc(sizeof(READER));
 					CUR = RINF;
 					while (CUR && CUR->UID != temp->uid) {
@@ -653,18 +437,11 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 						continue;
 					}
 					else {
-						while (scanf_return != 1) {
+						do {
 							printf("Please input the BookID the people want to return\n");
-							scanf_return = scanf("%d", &temp->bookID);
-							scanf("%*[^\n]");
-							scanf("%*c");
-							if (temp->bookID < 0) {
-								printf("ID couldn't be a negative number\n");
-								scanf_return = 0;
-							}
-							if (scanf_return != 1) printf("Please input the BookID again\n");
-						}
-						scanf_return = 0;
+							scanf("%d", &temp->bookID);
+						} while (temp->bookID < 1);
+						
 						LOAR* CUR2 = (LOAR*)malloc(sizeof(LOAR));
 						CUR2 = LRINF;
 						while (CUR2 && CUR2->bookID != temp->bookID) {
@@ -690,17 +467,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* UINF, READER* RINF, 
 										strcpy(CUR2->return_date, temp->return_date);
 										printf("Any remarks?\n");
 										printf("1.Yes\n2.No\n");
-										while (scanf_return != 1) {
-											scanf_return = scanf("%d", &temp->uid);
-											scanf("%*[^\n]");
-											scanf("%*c");
-											if (temp->uid < 0) {
-												printf("ID couldn't be a negative number\n");
-												scanf_return = 0;
-											}
-											if (scanf_return != 1) printf("Please input your choice again\n");
-										}
-										scanf_return = 0;
+										scanf("%d", &temp->uid);
 										if (temp->uid == 1) {
 											printf("Please input your remarks\n");
 											scanf("%12s", temp->remarks);
