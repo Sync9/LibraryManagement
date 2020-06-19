@@ -197,10 +197,10 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 
 			}
 		}
-		else if (ALT_Lev1 == 2 || ALT_Lev1 == 3) {
+		else if (ALT_Lev1 == 2 || ALT_Lev1 == 4) {
 			printf("Sorry,it's seems that you have no access to the feature:(\n");
 		}
-		else if (ALT_Lev1 == 4) {
+		else if (ALT_Lev1 == 3) {
 			while (ALT_Lev2 != 5) {
 				do {
 					Center();
