@@ -6,7 +6,7 @@ void inquireReaderInfo(READER* head, READER* infonode) {
 	if (head_ptr == NULL) printf("There is no reader in the system\n");
 	else {
 		while (head_ptr != NULL && strcmp(infonode->readername, head_ptr->readername) != 0) head_ptr = head_ptr->NEXT;
-		if (head_ptr == NULL /*&& strcmp(infonode->readername, head_ptr->readername) != 0*/) printf("The reader isn't exist in the system\n");
+		if (head_ptr == NULL) printf("The reader isn't exist in the system\n");
 		else {
 			printf("%9s%9s%15s%12s%9s%9s\n", "Username", "Readername", "Workplace", "Phonenumber", "Availablebook", "Unavailablebook");
 			controlFormat();

@@ -21,7 +21,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 		Astrisk();
 		controlFormat();
 		scanf("%d", &ALT_Lev1);
-		system("cls");
+		system("reset");
 		if (ALT_Lev1 == 1) {
 			while (ALT_Lev2 != 6) {
 				Center();
@@ -43,7 +43,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 				Astrisk();
 				controlFormat();
 				scanf("%d", &ALT_Lev2);
-				system("cls");
+				system("reset");
 				USER* info = (USER*)malloc(sizeof(USER));
 				if (info == NULL) {
 					printf("Fail to apply memory\n");
@@ -61,7 +61,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 					Astrisk();
 					controlFormat();
 					scanf("%9s", info->name);
-					system("cls");
+					system("reset");
 					Center();
 					controlFormat();
 					Astrisk();
@@ -73,7 +73,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 					Astrisk();
 					controlFormat();
 					scanf("%9s", info->passwd);
-					system("cls");
+					system("reset");
 					do {
 						Center();
 						controlFormat();
@@ -90,10 +90,10 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 						Astrisk();
 						controlFormat();
 						scanf("%d", &info->UL);
-						system("cls");
+						system("reset");
 					} while (info->UL != 1 && info->UL != 2 && info->UL != 3);
 					user_info=inputUserInfo(user_info,info);
-					//system("cls");
+					//system("reset");
 				}
 				else if (ALT_Lev2 == 2) {
 					Center();
@@ -107,7 +107,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 					Astrisk();
 					controlFormat();
 					scanf("%9s", info->name);
-					system("cls");
+					system("reset");
 					Center();
 					controlFormat();
 					Astrisk();
@@ -119,7 +119,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 					Astrisk();
 					controlFormat();
 					scanf("%9s", info->passwd);
-					system("cls");
+					system("reset");
 					do {
 						Center();
 						controlFormat();
@@ -136,7 +136,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 						Astrisk();
 						controlFormat();
 						scanf("%d", &info->UL);
-						system("cls");
+						system("reset");
 					} while (info->UL != 1 && info->UL != 2 && info->UL != 3);
 					Center();
 					controlFormat();
@@ -160,7 +160,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 					Astrisk();
 					controlFormat();
 					scanf("%9s", info->name);
-					system("cls");
+					system("reset");
 					Center();
 					controlFormat();
 					Astrisk();
@@ -188,7 +188,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 					Astrisk();
 					controlFormat();
 					scanf("%9s", info->passwd);
-					system("cls");
+					system("reset");
 					modifyPassword(user_info, info,root);
 				}
 				else if (ALT_Lev2 == 6);
@@ -220,7 +220,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 					Astrisk();
 					controlFormat();
 					scanf("%d", &ALT_Lev2);
-					system("cls");
+					system("reset");
 				}while (ALT_Lev2 < 1 && ALT_Lev2>5);
 				if (ALT_Lev2 == 1 || ALT_Lev2 == 2) printf("Sorry,it's seems that you have no access to the feature:(\n");
 				else if (ALT_Lev2 == 3) {
@@ -243,7 +243,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 						Astrisk();
 						controlFormat();
 						scanf("%d", &ALT_Lev3);	
-						system("cls");
+						system("reset");
 						if (ALT_Lev3 == 1) {
 							int bookID = 0;
 							Center();
@@ -255,7 +255,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 							Astrisk();
 							controlFormat();
 							scanf("%d", &bookID);
-							system("cls");
+							system("reset");
 							Center();
 							controlFormat();
 							Astrisk();
@@ -276,7 +276,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 							Astrisk();
 							controlFormat();
 							scanf("%20s", info->bookname);
-							system("cls");
+							system("reset");
 							Center();
 							controlFormat();
 							Astrisk();
@@ -297,7 +297,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 							Astrisk();
 							controlFormat();
 							scanf("%20s", info->authorname);
-							system("cls");
+							system("reset");
 							Center();
 							controlFormat();
 							Astrisk();
@@ -318,7 +318,7 @@ void SystemAdministrator(int ALT_Lev1, int ALT_Lev2, USER* root,USER* sign_in_in
 							Astrisk();
 							controlFormat();
 							scanf("%20s", info->press);
-							system("cls");
+							system("reset");
 							Center();
 							controlFormat();
 							Astrisk();

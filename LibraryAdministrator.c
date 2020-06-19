@@ -22,7 +22,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 		Astrisk();
 		controlFormat();
 		scanf("%d", &ALT_Lev1);
-		system("cls");
+		system("reset");
 		if (ALT_Lev1 == 1) {
 			while (ALT_Lev2 != 6) {
 				Center();
@@ -44,7 +44,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 				Astrisk();
 				controlFormat();
 				scanf("%d", &ALT_Lev2);
-				system("cls");
+				system("reset");
 				if (ALT_Lev2 == 5) {
 					USER* info = (USER*)malloc(sizeof(USER));
 					if (info == NULL) {
@@ -63,10 +63,10 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 					Astrisk();
 					controlFormat();
 					scanf("%9s", info->passwd);
-					system("cls");
+					system("reset");
 					info->UL=sign_in_info->UL;
 					modifyUserInfo(user_info, info);
-					system("cls");
+					system("reset");
 					free(info);
 				}
 				else if (ALT_Lev2 == 1 || ALT_Lev2 == 3 || ALT_Lev2 == 4 || ALT_Lev2 == 2)  printf("Sorry,it's seems that you have no access to the feature:(\n");
@@ -95,7 +95,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 				Astrisk();
 				controlFormat();
 				scanf("%d", &ALT_Lev2);
-				system("cls");
+				system("reset");
 				READER* info = (READER*)malloc(sizeof(READER));
 				if (info == NULL) {
 					printf("Fail to apply for memory\n");
@@ -114,7 +114,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%9s", info->username);
-						system("cls");
+						system("reset");
 						Center();
 						controlFormat();
 						Astrisk();
@@ -124,7 +124,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%9s", info->readername);
-						system("cls");
+						system("reset");
 						Center();
 						controlFormat();
 						Astrisk();
@@ -134,7 +134,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%15s", info->workplace);
-						system("cls");
+						system("reset");
 						Center();
 						controlFormat();
 						Astrisk();
@@ -144,7 +144,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%12s", info->phonenumber);
-						system("cls");
+						system("reset");
 						do {
 							Center();
 							controlFormat();
@@ -157,7 +157,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 							Astrisk();
 							controlFormat();
 							scanf("%d", &info->availablebook);
-							system("cls");
+							system("reset");
 						} while (info->availablebook < 0);
 						do {
 							Center();
@@ -171,7 +171,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 							Astrisk();
 							controlFormat();
 							scanf("%d", &info->unavailablebook);
-							system("cls");
+							system("reset");
 						} while (info->unavailablebook < 0);
 						reader_info=inputReaderInfo(reader_info, info);
 					}
@@ -187,7 +187,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%9s", info->username);
-						system("cls");
+						system("reset");
 						Center();
 						controlFormat();
 						Astrisk();
@@ -197,7 +197,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%9s", info->readername);
-						system("cls");
+						system("reset");
 						Center();
 						controlFormat();
 						Astrisk();
@@ -207,7 +207,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%15s", info->workplace);
-						system("cls");
+						system("reset");
 						Center();
 						controlFormat();
 						Astrisk();
@@ -217,7 +217,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%12s", info->phonenumber);
-						system("cls");
+						system("reset");
 						do {
 							Center();
 							controlFormat();
@@ -230,7 +230,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 							Astrisk();
 							controlFormat();
 							scanf("%d", &info->availablebook);
-							system("cls");
+							system("reset")
 						} while (info->availablebook < 0);
 						do {
 							Center();
@@ -244,7 +244,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 							Astrisk();
 							controlFormat();
 							scanf("%d", &info->unavailablebook);
-							system("cls");
+							system("reset")
 						} while (info->unavailablebook < 0);
 						modifyReaderInfo(reader_info, info);
 					}
@@ -262,7 +262,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%9s", info->username);
-						system("cls");
+						system("reset")
 						deleteReaderInfo(reader_info, info);
 					}
 					else if (ALT_Lev2 == 4) {
@@ -279,7 +279,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%9s", info->readername);
-						system("cls");
+						system("reset")
 						Center();
 						controlFormat();
 						Astrisk();
@@ -323,7 +323,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 					Astrisk();
 					controlFormat();
 					scanf("%d", &ALT_Lev2);
-					system("cls");
+					system("reset")
 				} while (ALT_Lev2 < 1 && ALT_Lev2>5);
 				if (ALT_Lev2 == 1) {
 					BOOK* info = (BOOK*)malloc(sizeof(BOOK));
@@ -339,7 +339,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%d", &info->recordID);
-						system("cls");
+						system("reset")
 					} while (info->recordID < 1);
 					do {
 						Center();
@@ -353,7 +353,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%d", &info->bookID);
-						system("cls");
+						system("reset")
 
 					} while (info->bookID < 1);
 					Center();
@@ -365,7 +365,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 					Astrisk();
 					controlFormat();
 					scanf("%20s", info->bookname);
-					system("cls");
+					system("reset")
 					Center();
 					controlFormat();
 					Astrisk();
@@ -375,7 +375,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 					Astrisk();
 					controlFormat();
 					scanf("%20s", info->authorname);
-					system("cls");
+					system("reset")
 					Center();
 					controlFormat();
 					Astrisk();
@@ -385,7 +385,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 					Astrisk();
 					controlFormat();
 					scanf("%20s", info->press);
-					system("cls");
+					system("reset")
 					do {
 						Center();
 						controlFormat();
@@ -398,7 +398,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%d", &info->lendout);
-						system("cls");
+						system("reset")
 					} while (info->lendout < 0);
 					do {
 						Center();
@@ -412,7 +412,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%d", &info->total);
-						system("cls");
+						system("reset")
 					} while (info->total < 0);
 					main_book_info=inputMainBookInfo(main_book_info,len_main_book_info,info);
 					creatMainBookInfoPointer(main_book_info, len_main_book_info);
@@ -442,7 +442,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 								Astrisk();
 								controlFormat();
 								scanf("%d", &info->lendout);
-								system("cls");
+								system("reset")
 							} while (info->lendout < 0);
 							do {
 								controlFormat();
@@ -455,7 +455,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 								Astrisk();
 								controlFormat();
 								scanf("%d", &info->total);
-								system("cls");
+								system("reset")
 							} while (info->total < 0);
 							modifyMainBookInfo(main_book_info, len_main_book_info, info);
 							free(info);
@@ -482,7 +482,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%d", &ALT_Lev3);
-						system("cls");
+						system("reset")
 						if (ALT_Lev3 == 1) {
 							int bookID = 0;
 							Center();
@@ -494,7 +494,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 							Astrisk();
 							controlFormat();
 							scanf("%d", &bookID);
-							system("cls");
+							system("reset")
 							Center();
 							controlFormat();
 							Astrisk();
@@ -512,7 +512,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 							printf("Please input the book name you are going to inquire\n");
 							controlFormat();
 							scanf("%20s", info->bookname);
-							system("cls");
+							system("reset")
 							Center();
 							controlFormat();
 							Astrisk();
@@ -531,7 +531,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 							printf("Please input the author name you are going to inquire\n");
 							controlFormat();
 							scanf("%20s", info->authorname);
-							system("cls");
+							system("reset")
 							Center();
 							controlFormat();
 							Astrisk();
@@ -550,7 +550,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 							printf("Please input the press name you are going to inquire\n");
 							controlFormat();
 							scanf("%20s", info->press);
-							system("cls");
+							system("reset")
 							Center();
 							controlFormat();
 							Astrisk();
@@ -592,7 +592,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 				Astrisk();
 				controlFormat();
 				scanf("%d", &ALT_Lev2);
-				system("cls");
+				system("reset")
 				if (ALT_Lev2 == 1) {
 					LOAR* temp = (LOAR*)malloc(sizeof(LOAR));
 					if (temp == NULL) {
@@ -611,7 +611,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						Astrisk();
 						controlFormat();
 						scanf("%s", &temp->username);
-						system("cls");
+						system("reset")
 						READER* CUR = reader_info;
 						while (CUR && strcmp(CUR->username,temp->username)!=0) {
 							CUR = CUR->NEXT;
@@ -638,7 +638,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 									Astrisk();
 									controlFormat();
 									scanf("%d", &temp->bookID);
-									system("cls");
+									system("reset")
 								} while (temp->bookID < 1);
 								BOOK* ptr = main_book_info;
 								for (; (ptr - main_book_info) < *len_main_book_info; ptr++) if (ptr->bookID == temp->bookID) break;
@@ -659,7 +659,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 										Astrisk();
 										controlFormat();
 										scanf("%11s", temp->lendout_date);
-										system("cls");
+										system("reset")
 										CUR->availablebook = CUR->availablebook - 1;
 										ptr->lendout = ptr->lendout + 1;
 										LOAR* LOAR_lo_ptr = (LOAR*)malloc(sizeof(LOAR));
@@ -711,7 +711,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 					Astrisk();
 					controlFormat();
 					scanf("%s", &temp->username);
-					system("cls");
+					system("reset")
 					READER* CUR = (READER*)malloc(sizeof(READER));
 					CUR = reader_info;
 					while (CUR && strcmp(CUR->username, temp->username) != 0) {
@@ -734,7 +734,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 							Astrisk();
 							controlFormat();
 							scanf("%d", &temp->bookID);
-							system("cls");
+							system("reset")
 						} while (temp->bookID < 1);
 						LOAR* CUR2 = (LOAR*)malloc(sizeof(LOAR));
 						CUR2 = LOAR_info;
@@ -764,7 +764,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 								Astrisk();
 								controlFormat();
 								scanf("%s", temp->return_date);
-								system("cls");
+								system("reset")
 								CUR->availablebook = CUR->availablebook + 1;
 								ptr->lendout = ptr->lendout - 1;
 								strcpy(CUR2->return_date, temp->return_date);
@@ -781,7 +781,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 								controlFormat();
 								int alt = 0;
 								scanf("%d", &alt);
-								system("cls");
+								system("reset")
 								if (alt == 1) {
 									Center();
 									controlFormat();
@@ -792,7 +792,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 									Astrisk();
 									controlFormat();
 									scanf("%12s", temp->remarks);
-									system("cls");
+									system("reset")
 									strcpy(CUR2->remarks, temp->remarks);
 								}
 								free(temp);

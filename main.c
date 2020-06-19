@@ -31,7 +31,7 @@ int main()
 		Astrisk();
 		controlFormat();
 		scanf("%9s", root->passwd);
-		system("cls");
+		system("reset");
 	}
 	else {
 		fread(root, sizeof(USER), 1, root_info_fp);

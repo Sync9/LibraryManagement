@@ -29,7 +29,7 @@ int signIn(USER* head,USER* signin,USER* root) {
 		scanf("%9s",signin->passwd);
 		controlFormat();
 		Astrisk();
-		system("cls");
+		system("reset");
 		cnt++;
 	} while (SignInAuthorize(head,signin,root) != 1 && cnt != 3);
 	if (cnt == 3) {

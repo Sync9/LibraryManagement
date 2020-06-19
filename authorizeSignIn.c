@@ -19,7 +19,7 @@ int SignInAuthorize(USER* head, USER* signin,USER* root) {
 			if (strcmp(head_ptr->passwd, signin->passwd) != 0) printf("Wrong Password\n");
 			if (strcmp(head_ptr->name, signin->name) == 0 && strcmp(head_ptr->passwd, signin->passwd) == 0 && head_ptr->UL == signin->UL) {
 				printf("Sign in successfully\n");
-				system("cls");
+				system("reset");
 				return 1;
 			}
 		}

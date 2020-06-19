@@ -7,4 +7,3 @@
 #define PATHLR "LOAR.dat"
 #define PATHMBI	"mainbookindex.dat"
 #define PATHRI "RootInfo.dat"
-#define cls (reset)

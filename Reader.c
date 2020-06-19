@@ -21,7 +21,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* user_info, BOO
 		Astrisk();
 		controlFormat();
 		scanf("%d", &ALT_Lev1);
-		system("cls");
+		system("reset");
 		if (ALT_Lev1 == 1) {
 			while (ALT_Lev2 != 6) {
 				Center();
@@ -43,7 +43,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* user_info, BOO
 				Astrisk();
 				controlFormat();
 				scanf("%d", &ALT_Lev2);
-				system("cls");
+				system("reset");
 				if (ALT_Lev2 == 5) {
 					USER* info = (USER*)malloc(sizeof(USER));
 					if (info == NULL) {
@@ -62,10 +62,10 @@ void Reader(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* user_info, BOO
 					Astrisk();
 					controlFormat();
 					scanf("%9s", info->passwd);
-					system("cls");
+					system("reset");
 					info->UL = sign_in_info->UL;
 					modifyUserInfo(user_info, info);
-					system("cls");
+					system("reset");
 					free(info);
 				}
 				else if (ALT_Lev2 == 1 || ALT_Lev2 == 3 || ALT_Lev2 == 4 || ALT_Lev2 == 2)  printf("Sorry,it's seems that you have no access to the feature:(\n");
@@ -96,7 +96,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* user_info, BOO
 					Astrisk();
 					controlFormat();
 					scanf("%d", &ALT_Lev2);
-					system("cls");
+					system("reset");
 				} while (ALT_Lev2 < 1 && ALT_Lev2>5);
 				if (ALT_Lev2 == 1 || ALT_Lev2 == 2) printf("Sorry,it's seems that you have no access to the feature:(\n");
 				else if (ALT_Lev2 == 3) {
@@ -119,7 +119,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* user_info, BOO
 						Astrisk();
 						controlFormat();
 						scanf("%d", &ALT_Lev3);
-						system("cls");
+						system("reset");
 						if (ALT_Lev3 == 1) {
 							int bookID = 0;
 							Center();
@@ -131,7 +131,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* user_info, BOO
 							Astrisk();
 							controlFormat();
 							scanf("%d", &bookID);
-							system("cls");
+							system("reset");
 							Center();
 							controlFormat();
 							Astrisk();
@@ -152,7 +152,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* user_info, BOO
 							Astrisk();
 							controlFormat();
 							scanf("%20s", info->bookname);
-							system("cls");
+							system("reset");
 							Center();
 							controlFormat();
 							Astrisk();
@@ -173,7 +173,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* user_info, BOO
 							Astrisk();
 							controlFormat();
 							scanf("%20s", info->authorname);
-							system("cls");
+							system("reset");
 							Center();
 							controlFormat();
 							Astrisk();
@@ -194,7 +194,7 @@ void Reader(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* user_info, BOO
 							Astrisk();
 							controlFormat();
 							scanf("%20s", info->press);
-							system("cls");
+							system("reset");
 							Center();
 							controlFormat();
 							Astrisk();
