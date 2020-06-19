@@ -1,438 +1,234 @@
 #include"Header.h"
-void Reader(int ALT_Lev1, int ALT_Lev2,int UID,USER* UINF,READER* RINF,LOAR* LRINF, FILE* FPU,FILE* FPR,FILE* FPLR,FILE* FPMB, FILE* FPPI, FILE* FPBNI, FILE* FPBANI, BOOK* arr, int len, INDEX* arr_authorname, INDEX* arr_bookname, INDEX* arr_press) {
-	int* cnt1 = (int*)malloc(sizeof(int));
-	if (cnt1 == NULL) {
-		printf("Fail to apply for memory\n");
-		exit(1);
-	}
-	int* cnt2 = (int*)malloc(sizeof(int));
-	if (cnt2 == NULL) {
-		printf("Fail to apply for memory\n");
-		exit(1);
-	}
-	int* cnt3 = (int*)malloc(sizeof(int));
-	if (cnt3 == NULL) {
-		printf("Fail to apply for memory\n");
-		exit(1);
-	}
+void Reader(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* user_info, BOOK* main_book_info, int* len_main_book_info, INDEX* author_name_index, int* len_author_name_index, INDEX* book_name_index, int* len_book_name_index, INDEX* press_name_index, int* len_press_name_index, MBI* main_book_index, int* len_main_book_index, char* user_info_file_path, char* main_book_info_file_path, char* book_name_index_file_path, char* author_name_index_file_path, char* press_name_index_file_path, char* main_book_index_file_path) {
 	while (ALT_Lev1 != 5) {
 		ALT_Lev1 = 0;
 		ALT_Lev2 = 0;
-		printf("**********************************\n\t1.UserManagement\n\t2.ReaderManagement\n\t3.BookManagement\n\t4.BookCirculationManagement\n\t5.Exit\n***********************************\n");
+		printf("Sign in as UserID = %s  UserLevel = %d", sign_in_info->name, sign_in_info->UL);
+		printf("\n\n\n\n\n");
+		controlFormat();
+		Astrisk();
+		controlFormat();
+		printf("1----UserManagement\n");
+		controlFormat();
+		printf("2----ReaderManagement\n");
+		controlFormat();
+		printf("3----BookManagement\n");
+		controlFormat();
+		printf("4----BookCirculationManagement\n");
+		controlFormat();
+		printf("5----Exit\n");
+		controlFormat();
+		Astrisk();
+		controlFormat();
 		scanf("%d", &ALT_Lev1);
+		system("cls");
 		if (ALT_Lev1 == 1) {
 			while (ALT_Lev2 != 6) {
-				printf("**********************************\n\t1.InputUserInformation\n\t2.ModifyUserInformation\n\t3.DeleteUserInformation\n\t4.DisplayUserInformation\n\t5.ModifyUserPassword\n\t6.BackToPrevious\n***********************************\n");
+				Center();
+				controlFormat();
+				Astrisk();
+				controlFormat();
+				printf("1----InputUserInformation\n");
+				controlFormat();
+				printf("2----ModifyUserInformation\n");
+				controlFormat();
+				printf("3----DeleteUserInformation\n");
+				controlFormat();
+				printf("4----DisplayUserInformation\n");
+				controlFormat();
+				printf("5----ModifyUserPassword\n");
+				controlFormat();
+				printf("6----BackToPrevious\n");
+				controlFormat();
+				Astrisk();
+				controlFormat();
 				scanf("%d", &ALT_Lev2);
+				system("cls");
 				if (ALT_Lev2 == 5) {
-					USER* saved_info = (USER*)malloc(sizeof(USER));
-					saved_info->UID = UID;
-					saved_info->UL = 1;
-					printf("Please input the password you are to apply\n");
-					scanf("%9s", saved_info->Password);
-					UINF = UserManagement_2_ModifyUserInformation(UINF, saved_info);
-					free(saved_info);
+					USER* info = (USER*)malloc(sizeof(USER));
+					if (info == NULL) {
+						printf("Fail to apply memory\n");
+						exit(1);
+					}
+					Center();
+					controlFormat();
+					Astrisk();
+					strcpy(info->name, sign_in_info->name);
+					controlFormat();
+					printf("Please input the Password\n");
+					controlFormat();
+					printf("No more than 9 letter or number\n");
+					controlFormat();
+					Astrisk();
+					controlFormat();
+					scanf("%9s", info->passwd);
+					system("cls");
+					info->UL = sign_in_info->UL;
+					modifyUserInfo(user_info, info);
+					system("cls");
+					free(info);
 				}
-				else if (ALT_Lev2 == 1 || ALT_Lev2 == 3 || ALT_Lev2 == 2 || ALT_Lev2 == 4)  printf("Sorry,it's seems that you have no access to the feature:(\n");
+				else if (ALT_Lev2 == 1 || ALT_Lev2 == 3 || ALT_Lev2 == 4 || ALT_Lev2 == 2)  printf("Sorry,it's seems that you have no access to the feature:(\n");
 				else if (ALT_Lev2 == 6);
 				else printf("Illegal Input\nPlease input your choice again\n");
 			}
 		}
-		else if (ALT_Lev1 == 2) {
+		else if (ALT_Lev1 == 2||ALT_Lev1==4) {
 			printf("Sorry,it's seems that you have no access to the feature:(\n");
 		}
 		else if (ALT_Lev1 == 3) {
 			while (ALT_Lev2 != 5) {
-				if (arr == NULL) {
-					*cnt1 = 0;
-					*cnt2 = 0;
-					*cnt3 = 0;
-				}
-				else {
-					INDEX* temp = (INDEX*)malloc(sizeof(INDEX));
-					if (temp == NULL) {
-						printf("Fail to apply for memory\n");
-						exit(1);
-					}
-					else {
-						temp = CreatIndex(arr, len, arr_bookname, cnt1, 1);
-						INDEX* bookname = (INDEX*)malloc(sizeof(INDEX) * *cnt1);
-						if (bookname == NULL) {
-							printf("Fail to apply for memory\n");
-							exit(1);
-						}
-						else {
-							INDEX* ptr = bookname;
-							for (INDEX* ptr_temp = temp; (ptr_temp - temp) < *cnt1; ptr_temp++, ptr++) {
-								strcpy(ptr->str, ptr_temp->str);
-								ptr->ini = ptr_temp->ini;
-								ptr->len = ptr_temp->len;
-							}
-							arr_bookname = bookname;
-						}
-						temp = CreatIndex(arr, len, arr_authorname, cnt2, 2);
-						INDEX* authorname = (INDEX*)malloc(sizeof(INDEX) * *cnt2);
-						if (authorname == NULL) {
-							printf("Fail to apply for memory\n");
-							exit(1);
-						}
-						else {
-							INDEX* ptr = authorname;
-							for (INDEX* ptr_temp = temp; (ptr_temp - temp) < *cnt2; ptr_temp++, ptr++) {
-								strcpy(ptr->str, ptr_temp->str);
-								ptr->ini = ptr_temp->ini;
-								ptr->len = ptr_temp->len;
-							}
-							arr_authorname = authorname;
-						}
-						temp = CreatIndex(arr, len, arr_press, cnt3, 3);
-						INDEX* press = (INDEX*)malloc(sizeof(INDEX) * *cnt2);
-						if (press == NULL) {
-							printf("Fail to apply for memory\n");
-							exit(1);
-						}
-						else {
-							INDEX* ptr = press;
-							for (INDEX* ptr_temp = temp; (ptr_temp - temp) < *cnt3; ptr_temp++, ptr++) {
-								strcpy(ptr->str, ptr_temp->str);
-								ptr->ini = ptr_temp->ini;
-								ptr->len = ptr_temp->len;
-							}
-							arr_press = press;
-						}
-						free(temp);
-					}
-				}
 				do {
-					printf("**************************************\n\t1.InputBookInformation\n\t2.ModifyBookInformation\n\t3.InquireBookInformation\n\t4.TotalStatistics\n\t5.BackToPrevious\n**************************************\n");
+					Center();
+					controlFormat();
+					Astrisk();
+					controlFormat();
+					printf("1----InputBookInformation\n");
+					controlFormat();
+					printf("2----ModifyBookInformation\n");
+					controlFormat();
+					printf("3----InquireBookInformation\n");
+					controlFormat();
+					printf("4----TotalStatistics\n");
+					controlFormat();
+					printf("5----BackToPrevious\n");
+					controlFormat();
+					Astrisk();
+					controlFormat();
 					scanf("%d", &ALT_Lev2);
+					system("cls");
 				} while (ALT_Lev2 < 1 && ALT_Lev2>5);
 				if (ALT_Lev2 == 1 || ALT_Lev2 == 2) printf("Sorry,it's seems that you have no access to the feature:(\n");
 				else if (ALT_Lev2 == 3) {
 					int ALT_Lev3 = 0;
 					while (ALT_Lev3 != 5) {
-						int next = 0;
-						int cnt_temp = 0;
-						int index_len = 0;
-						int hit = 0;
-						int ini = 0;
-						printf("**************************************\n\t1.By RecordID\n\t2.By BookName\n\t3.By AuthorName\n\t4.By Press\n\t5.BackToPrevious\n**************************************\n");
+						Center();
+						controlFormat();
+						Astrisk();
+						controlFormat();
+						printf("1----By BookID\n");
+						controlFormat();
+						printf("2----By BookName\n");
+						controlFormat();
+						printf("3----By AuthorName\n");
+						controlFormat();
+						printf("4----By Press\n");
+						controlFormat();
+						printf("5----BackToPrevious\n");
+						controlFormat();
+						Astrisk();
+						controlFormat();
 						scanf("%d", &ALT_Lev3);
+						system("cls");
 						if (ALT_Lev3 == 1) {
-							if (arr == NULL) printf("There is no information\n");
-							else {
-								BOOK* temp = (BOOK*)malloc(sizeof(BOOK));
-								if (temp == NULL) {
-									printf("Fail to apply for memory\n");
-									exit(1);
-								}
-								else {
-									int offset = 0;
-									do {
-										printf("Please input the recordID you are to inquire\n");
-										printf("RecordID couldn't smaller than 1 \n");
-										scanf("%d", &temp->RecordID);
-									} while (temp->RecordID < 1);
-									InsertionSort(arr, len);
-									offset = BinarySearch(arr, len, temp->RecordID);
-									if (offset == -1) printf("The item isn't exsist\n");
-									else {
-										temp->BookID = arr[offset].BookID;
-										temp->LendOut = arr[offset].LendOut;
-										temp->Total = arr[offset].Total;
-										strcpy(temp->AuthorName, arr[offset].AuthorName);
-										strcpy(temp->BookName, arr[offset].BookName);
-										strcpy(temp->Press, arr[offset].Press);
-										printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
-										printf("%d\t%d\t%s\t%s\t%s\t%d\t%d\t\n", temp->RecordID, temp->BookID, temp->BookName, temp->AuthorName, temp->Press, temp->LendOut, temp->Total);
-									}
-									free(temp);
-								}
-							}
+							int bookID = 0;
+							Center();
+							controlFormat();
+							Astrisk();
+							controlFormat();
+							printf("Please input the bookID you are going to inquire\n");
+							controlFormat();
+							Astrisk();
+							controlFormat();
+							scanf("%d", &bookID);
+							system("cls");
+							Center();
+							controlFormat();
+							Astrisk();
+							controlFormat();
+							if (main_book_info == NULL) printf("There is no book info in the system\n");
+							else inquireByBookID(main_book_index, len_main_book_index, bookID, main_book_info_file_path);
+							controlFormat();
+							Astrisk();
 						}
 						else if (ALT_Lev3 == 2) {
-							if (*cnt2 == 0) printf("There is no information\n");
-							else {
-								char* input = (char*)malloc(sizeof(char) * 9);
-								if (input == NULL) {
-									printf("Fail to apply for memory\n");
-									exit(1);
-								}
-								else {
-									printf("Please input the book name you are to inquire\n");
-									scanf("%9s", input);
-									printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
-									PrintInquireResult(arr, arr_bookname, cnt1, input, next, cnt_temp, index_len, hit, ini, len,cnt1);
-									free(input);
-								}
-							}
+							BOOK* info = (BOOK*)malloc(sizeof(BOOK));
+							Center();
+							controlFormat();
+							Astrisk();
+							controlFormat();
+							printf("Please input the book name you are going to inquire\n");
+							controlFormat();
+							Astrisk();
+							controlFormat();
+							scanf("%20s", info->bookname);
+							system("cls");
+							Center();
+							controlFormat();
+							Astrisk();
+							controlFormat();
+							inquireByIndex(main_book_info, len_main_book_info, book_name_index, len_book_name_index, info, 1);
+							controlFormat();
+							Astrisk();
+							free(info);
 						}
 						else if (ALT_Lev3 == 3) {
-							if (*cnt2 == 0) printf("There is no information\n");
-							else {
-								ini = 0;
-								char* input = (char*)malloc(sizeof(char) * 9);
-								if (input == NULL) {
-									printf("Fail to apply for memory\n");
-									exit(1);
-								}
-								else {
-									printf("Please input the author name you are to inquire\n");
-									scanf("%9s", input);
-									printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
-									PrintInquireResult(arr, arr_authorname, cnt2, input, next, cnt_temp, index_len, hit, ini, len,cnt2);
-									free(input);
-								}
-							}
+							BOOK* info = (BOOK*)malloc(sizeof(BOOK));
+							Center();
+							controlFormat();
+							Astrisk();
+							controlFormat();
+							printf("Please input the author name you are going to inquire\n");
+							controlFormat();
+							Astrisk();
+							controlFormat();
+							scanf("%20s", info->authorname);
+							system("cls");
+							Center();
+							controlFormat();
+							Astrisk();
+							controlFormat();
+							inquireByIndex(main_book_info, len_main_book_info, author_name_index, len_author_name_index, info, 2);
+							controlFormat();
+							Astrisk();
+							free(info);
 						}
 						else if (ALT_Lev3 == 4) {
-							if (*cnt3 == 0) printf("There is no information\n");
-							else {
-								ini = 0;
-								char* input = (char*)malloc(sizeof(char) * 9);
-								if (input == NULL) {
-									printf("Fail to apply for memory\n");
-									exit(1);
-								}
-								else {
-									printf("Please input the press you are to inquire\n");
-									scanf("%9s", input);
-									printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
-									PrintInquireResult(arr, arr_press, cnt3, input, next, cnt_temp, index_len, hit, ini, len,cnt3);
-									free(input);
-								}
-							}
+							BOOK* info = (BOOK*)malloc(sizeof(BOOK));
+							Center();
+							controlFormat();
+							Astrisk();
+							controlFormat();
+							printf("Please input the press name you are going to inquire\n");
+							controlFormat();
+							Astrisk();
+							controlFormat();
+							scanf("%20s", info->press);
+							system("cls");
+							Center();
+							controlFormat();
+							Astrisk();
+							controlFormat();
+							inquireByIndex(main_book_info, len_main_book_info, press_name_index, len_press_name_index, info, 3);
+							controlFormat();
+							Astrisk();
+							free(info);
 						}
 						else if (ALT_Lev3 == 5);
 						else printf("Illegal Input\nPlease input your choice again\n");
 					}
 				}
 				else if (ALT_Lev2 == 4) {
-					if (arr == NULL) printf("There is no information\n");
-					else {
-						printf("************************\n\tTotalStatistics\t\n**************************\n");
-						printf("RecordID\tBookID\tBookName\tAuthorName\tPress\tLendOut\tTotal\t\n");
-						for (BOOK* ptr = arr; (ptr - arr) < len; ptr++)
-							printf("%d\t%d\t%s\t%s\t%s\t%d\t%d\t\n", ptr->RecordID, ptr->BookID, ptr->BookName, ptr->AuthorName, ptr->Press, ptr->LendOut, ptr->Total);
-					}
+					Center();
+					controlFormat();
+					Astrisk();
+					controlFormat();
+					displayBookStatistics(main_book_info, len_main_book_info);
+					controlFormat();
+					Astrisk();
 				}
 				else if (ALT_Lev2 == 5);
 				else printf("Illegal Input\nPlease input your choice again\n");
 			}
 		}
-		else if (ALT_Lev1 == 4) {
-			while (ALT_Lev2 != 2) {
-				printf("**********************************\n\t1.Order\t\n\t2.BackToPrevious\t\n**********************************\n");
-				scanf("%d", &ALT_Lev2);
-				if (ALT_Lev2 == 1) {
-					LOAR* temp = (LOAR*)malloc(sizeof(LOAR));
-					if (temp == NULL) {
-						printf("Fail to apply for memory\n");
-						exit(1);
-					}
-					else {
-						printf("Plase input your ReaderID\n");
-						printf("ReaderID couldn't be negative\n");
-						scanf("%d", &temp->uid);
-						READER* CUR = RINF;
-						while (CUR && CUR->UID != temp->uid) {
-							CUR = CUR->NEXT;
-						}
-						if (CUR == NULL) {
-							printf("Illegal ReaderID\n");
-							continue;
-						}
-						else {
-							if (CUR->AvailableBook == 0) {
-								printf("Sorry.You couldn't borrow book beacause your avaliable book is 0\n");
-								continue;
-							}
-							else {
-								printf("Please input the BookID you are to order\n");
-								printf("BookID couldn't smaller than 1 \n");
-								scanf("%d", &temp->bookID);
-								BOOK* ptr = arr;
-								for (; (ptr - arr) < len; ptr++) if (ptr->BookID == temp->bookID) break;
-								if ((ptr - arr) == len) {
-									printf("Illegal BookID\n");
-									continue;
-								}
-								else {
-									if (ptr->Total != ptr->LendOut) {
-										printf("Please input the time you are goint to borrow\n");
-										printf("YY/MM/DD\n");
-										scanf("%11s", temp->lendout_date);
-										CUR->AvailableBook = CUR->AvailableBook - 1;
-										ptr->LendOut = ptr->LendOut + 1;
-										AddNewNode(LRINF, temp);
-										free(temp);
-									}
-									else {
-										printf("Sorry,all the book has been lent out\n");
-										continue;
-									}
-								}
-							}
-						}
-					}
-				}
-				else if (ALT_Lev2 == 2);
-				else printf("Illegal Input\nPlease input your choice again\n");
-			}
+		else if (ALT_Lev1 == 5) {
+			writeUserInfotoFile(user_info_file_path, user_info);
+			writeMainBookInfoToFile(main_book_info_file_path, main_book_info, len_main_book_info);
+			writeMainBookIndexToFile(main_book_index_file_path, main_book_index, len_main_book_index);
+			writeIndexToFile(book_name_index_file_path, book_name_index, len_book_name_index);
+			writeIndexToFile(author_name_index_file_path, author_name_index, len_author_name_index);
+			writeIndexToFile(press_name_index_file_path, press_name_index, len_press_name_index);
 		}
-		else if (ALT_Lev1 == 5);
 		else printf("Illegal Input\nPlease input your choice again\n");
 	}
-	USER* CURU = (USER*)malloc(sizeof(USER));
-	if (CURU == NULL) {
-		printf("Fail to apply for memory\n");
-		exit(1);
-	}
-	else {
-		CURU = UINF->NEXT;
-		while (CURU != NULL) {
-			fwrite(CURU, sizeof(USER), 1, FPU);
-			CURU = CURU->NEXT;
-		}
-		USER* PREU = (USER*)malloc(sizeof(USER));
-		if (PREU == NULL) {
-			printf("Fail to apply for memory\n");
-			exit(1);
-		}
-		else {
-			while (CURU != NULL) {
-				PREU = CURU;
-				CURU = CURU->NEXT;
-				free(PREU);
-			}
-			fclose(FPU);
-		}
-	}
-	READER* CURR = (READER*)malloc(sizeof(READER));
-	if (CURR == NULL) {
-		printf("Fail to apply for memory\n");
-		exit(1);
-	}
-	else {
-		CURR = RINF->NEXT;
-		while (CURR != NULL) {
-			fwrite(CURR, sizeof(READER), 1, FPR);
-			CURR = CURR->NEXT;
-		}
-		READER* PRER = (READER*)malloc(sizeof(READER));
-		if (PRER == NULL) {
-			printf("Fail to apply for memory\n");
-			exit(1);
-		}
-		else {
-			while (CURR != NULL) {
-				PRER = CURR;
-				CURR = CURR->NEXT;
-				free(PRER);
-			}
-			fclose(FPR);
-		}
-	}
-	LOAR* CURLR = (LOAR*)malloc(sizeof(LOAR));
-	if (CURLR == NULL) {
-		printf("Fail to apply for memory\n");
-		exit(1);
-	}
-	else {
-		CURLR = LRINF->next;
-		while (CURLR != NULL) {
-			fwrite(CURLR, sizeof(LOAR), 1, FPLR);
-			CURLR = CURLR->next;
-		}
-		LOAR* PRELR = (LOAR*)malloc(sizeof(LOAR));
-		if (PRELR == NULL) {
-			printf("Fail to apply for memory\n");
-			exit(1);
-		}
-		else {
-			while (CURLR != NULL) {
-				PRELR = CURLR;
-				CURLR = CURLR->next;
-				free(PRELR);
-			}
-			fclose(FPLR);
-		}
-	}
-	if (arr != NULL) {
-		fwrite(arr, sizeof(BOOK), len, FPMB);
-		INDEX* temp = (INDEX*)malloc(sizeof(INDEX));
-		if (temp == NULL) {
-			printf("Fail to apply for memory\n");
-			exit(1);
-		}
-		else {
-			temp = CreatIndex(arr, len, arr_bookname, cnt1, 1);
-			INDEX* bookname = (INDEX*)malloc(sizeof(INDEX) * *cnt1);
-			if (bookname == NULL) {
-				printf("Fail to apply for memory\n");
-				exit(1);
-			}
-			else {
-				INDEX* ptr = bookname;
-				for (INDEX* ptr_temp = temp; (ptr_temp - temp) < *cnt1; ptr_temp++, ptr++) {
-					strcpy(ptr->str, ptr_temp->str);
-					ptr->ini = ptr_temp->ini;
-					ptr->len = ptr_temp->len;
-				}
-				arr_bookname = bookname;
-			}
-			temp = CreatIndex(arr, len, arr_authorname, cnt2, 2);
-			INDEX* authorname = (INDEX*)malloc(sizeof(INDEX) * *cnt2);
-			if (authorname == NULL) {
-				printf("Fail to apply for memory\n");
-				exit(1);
-			}
-			else {
-				INDEX* ptr = authorname;
-				for (INDEX* ptr_temp = temp; (ptr_temp - temp) < *cnt2; ptr_temp++, ptr++) {
-					strcpy(ptr->str, ptr_temp->str);
-					ptr->ini = ptr_temp->ini;
-					ptr->len = ptr_temp->len;
-				}
-				arr_authorname = authorname;
-			}
-			temp = CreatIndex(arr, len, arr_press, cnt3, 3);
-			INDEX* press = (INDEX*)malloc(sizeof(INDEX) * *cnt2);
-			if (press == NULL) {
-				printf("Fail to apply for memory\n");
-				exit(1);
-			}
-			else {
-				INDEX* ptr = press;
-				for (INDEX* ptr_temp = temp; (ptr_temp - temp) < *cnt3; ptr_temp++, ptr++) {
-					strcpy(ptr->str, ptr_temp->str);
-					ptr->ini = ptr_temp->ini;
-					ptr->len = ptr_temp->len;
-				}
-				arr_press = press;
-			}
-			free(temp);
-		}
-		free(arr);
-	}
-	if (arr_bookname != NULL) {
-		fwrite(arr_bookname, sizeof(INDEX), *cnt1, FPBNI);
-		free(arr_bookname);
-		free(cnt1);
-	}
-	if (arr_authorname != NULL) {
-		fwrite(arr_authorname, sizeof(INDEX), *cnt2, FPBANI);
-		free(arr_authorname);
-		free(cnt2);
-	}
-	if (arr_press != NULL) {
-		fwrite(arr_press, sizeof(INDEX), *cnt3, FPPI);
-		free(arr_press);
-		free(cnt3);
-	}
-	fclose(FPMB);
-	fclose(FPPI);
-	fclose(FPBNI);
-	fclose(FPBANI);
-	exit(0);
 }

@@ -1,199 +1,99 @@
 #include"Header.h"
 int main()
 {
-	char UserFile[] = { PATHU };
-	char ReaderFile[] = { PATHR };
-	char BookMainFile[] = { PATHMB };
-	char BookNameIndex[] = {PATHBNI};
-	char AuthorNameIndex[] = { PATHANI };
-	char PressIndex[] = { PATHPI };
-	char LOARFile = { PATHLR };
+	char user_info_file_path[] = { PATHU };
+	char reader_info_file_path[] = { PATHR };
+	char main_book_info_file_path[] = { PATHMB };
+	char main_book_index_file_path[] = { PATHMBI };
+	char book_name_index_file_path[] = { PATHBNI };
+	char author_name_index_file_path[] = { PATHANI };
+	char press_name_index_file_path[] = { PATHPI };
+	char lend_out_and_return_info_file_path[] = { PATHLR };
+	char root_info_path[] = { PATHRI };
 	/************************************************************/
-	FILE* FPMB = fopen(PATHMB, "ab+");
-	if (FPMB == NULL) {
-		printf("Fail to open the file named UserInformation:(\n");
-		exit(1);
-	}
-	int cnt =GetNumberOfBlock(FPMB,sizeof(BOOK));
-	int len = cnt;
-	BOOK* arr_mainfile = (BOOK*)malloc(sizeof(BOOK) * cnt);
-	if (cnt == 0) {
-		free(arr_mainfile);
-		arr_mainfile = NULL;
-	}
-	if(arr_mainfile!=NULL) fread(arr_mainfile, sizeof(BOOK), cnt, FPMB);
-	fclose(FPMB);
-	FPMB = fopen(PATHMB, "wb+");
-	/************************************************************/
-	FILE* FPBNI = fopen(PATHBNI, "ab+");
-	if (FPBNI == NULL) {
-		printf("Fail to open the file named UserInformation:(\n");
-		exit(1);
-	}
-	cnt = GetNumberOfBlock(FPBNI, sizeof(INDEX));
-	INDEX* arr_bookname = (INDEX*)malloc(sizeof(INDEX)*cnt);
-	if (cnt == 0) {
-		free(arr_bookname);
-		arr_bookname = NULL;
-	}
-	if(arr_bookname!=NULL)fread(arr_bookname, sizeof(INDEX), cnt, FPBNI);
-	fclose(FPBNI);
-	int* cnt_bookname = (int*)malloc(sizeof(int));
-	*cnt_bookname = cnt;
-	FPBNI = fopen(PATHBNI, "wb+");
-	/*************************************************************/
-	FILE* FPANI = fopen(PATHANI, "ab+"); 
-	if (FPANI == NULL) {
-		printf("Fail to open the file named UserInformation:(\n");
-		exit(1);
-	}
-	cnt = GetNumberOfBlock(FPANI, sizeof(INDEX));
-	INDEX* arr_authorname = (INDEX*)malloc(sizeof(INDEX)*cnt);
-	if (cnt == 0) {
-		free(arr_authorname);
-		arr_authorname = NULL;
-	}
-	if(arr_authorname!=NULL)fread(arr_authorname, sizeof(INDEX), cnt, FPANI);
-	fclose(FPANI);
-	int* cnt_authorname = (int*)malloc(sizeof(int));
-	*cnt_authorname = cnt;
-	FPANI = fopen(PATHANI, "wb+");
-	/************************************************************/
-	FILE* FPPI = fopen(PATHPI, "ab+");
-	if (FPPI == NULL) {
-		printf("Fail to open the file named UserInformation:(\n");
-		exit(1);
-	}
-	cnt = GetNumberOfBlock(FPPI, sizeof(INDEX));
-	INDEX* arr_press = (INDEX*)malloc(sizeof(INDEX) * cnt);
-	if (cnt == 0) {
-		free(arr_press);
-		arr_press = NULL;
-	}
-	if(arr_press!=NULL)fread(arr_press, sizeof(INDEX), cnt, FPPI);
-	fclose(FPPI);
-	int* cnt_pressname = (int*)malloc(sizeof(int));
-	*cnt_pressname = cnt;
-	FPPI = fopen(PATHPI, "wb+");
-	/************************************************************/
-	FILE* FPU = fopen(PATHU, "ab+");
-	if (FPU == NULL) {
-		printf("Fail to open the file named UserInformation:(\n");
-		exit(1);
-	}
-	USER* UINF = (USER*)malloc(sizeof(USER));
-	int* c = (int*)malloc(sizeof(int));
-	*c = fgetc(FPU);
-	USER* firstuser = (USER*)malloc(sizeof(USER));
-	if (*c == EOF) {
-		fseek(FPU, -1, SEEK_CUR);
-		UINF->NEXT = NULL;
-		printf("It seems that it's your first time to run the system:)\n");
-		printf("There is no user in the System\n");
-		printf("Don't worry,I will help you become the first System Administrator:)\n");
-		firstuser->UL = 2;
-		printf("Now Please your UserID\n");
-		scanf("%d", &firstuser->UID);
-		printf("Your Password\n");
-		scanf("%s", firstuser->Password);
-		printf("%s is your Password\n", firstuser->Password);
-		printf("Congratulations! You have become the first System Administrator\n");
-	}
-	else fseek(FPU, -1, SEEK_CUR);
-	UINF=USERInformationLinkedListCreat(FPU,UserFile,UINF,firstuser);
-	free(firstuser);
-	free(c);
-	USER* Signin = (USER*)malloc(sizeof(USER));
-	cnt = 0;
-	if (Login(cnt, UINF, Signin) == 0) { 
-		USER* CURU = (USER*)malloc(sizeof(USER));
-		if (CURU == NULL) {
-			printf("Fail to apply for memory\n");
-			exit(1);
-		}
-		else {
-			CURU = UINF->NEXT;
-			while (CURU != NULL) {
-				fwrite(CURU, sizeof(USER), 1, FPU);
-				CURU = CURU->NEXT;
-			}
-			USER* PREU = (USER*)malloc(sizeof(USER));
-			if (PREU == NULL) {
-				printf("Fail to apply for memory\n");
-				exit(1);
-			}
-			else {
-				while (CURU != NULL) {
-					PREU = CURU;
-					CURU = CURU->NEXT;
-					free(PREU);
-				}
-				fclose(FPU);
-			}
-		}
-		if (arr_mainfile != NULL) {
-			fwrite(arr_mainfile, sizeof(BOOK), len, FPMB);
-			free(arr_mainfile);
-		}
-		if (arr_bookname != NULL) {
-			fwrite(arr_bookname, sizeof(INDEX), *cnt_bookname, FPBNI);
-			free(arr_bookname);
-			free(cnt_bookname);
-		}
-		if (arr_authorname != NULL) {
-			fwrite(arr_authorname, sizeof(INDEX), *cnt_authorname, FPANI);
-			free(arr_authorname);
-			free(cnt_authorname);
-		}
-		if (arr_press != NULL) {
-			fwrite(arr_press, sizeof(INDEX), *cnt_pressname, FPPI);
-			free(arr_press);
-			free(cnt_pressname);
-		}
-		fclose(FPMB);
-		fclose(FPPI);
-		fclose(FPBNI);
-		fclose(FPANI);
-		exit(1); 
+	FILE* root_info_fp = fopen(root_info_path, "rb");
+	USER* root = malloc(sizeof(USER));
+	if (root_info_fp == NULL) {
+		Center();
+		controlFormat();
+		Astrisk();
+		controlFormat();
+		printf("There is no user in the system\n");
+		controlFormat();
+		printf("I will help you become the first system administrator\n");
+		root->UL = 2;
+		controlFormat();
+		printf("You username is root\n");
+		strcpy(root->name, "root");
+		controlFormat();
+		printf("Now please set password for your root account\n");
+		controlFormat();
+		Astrisk();
+		controlFormat();
+		scanf("%9s", root->passwd);
+		system("cls");
 	}
 	else {
-		int ALT_Lev1 = 0;//ALT=AlternativeFeature
-		int ALT_Lev2 = 0;//ALT_Lev2=AlternativeFeatureLevel2¡¡
-		if (Signin->UL == 3) {
-			FILE* FPR = fopen(PATHR, "ab+");
-			if (FPR == NULL) {
-				printf("Fail to open the file named ReaderInformation:(\n");
-				exit(1);
-			}
-			READER* RINF = (READER*)malloc(sizeof(READER));
-			RINF = READERInformationLinkedListCreat(FPR, ReaderFile, RINF);
-			FILE* FPLR = fopen(PATHLR, "ab+");
-			if (FPLR == NULL) {
-				printf("Fail to open the file named LOARInformation\n");
-				exit(1);
-			}
-			LOAR* LRINF = (LOAR*)malloc(sizeof(LOAR));
-			LRINF = LOARInformationLinkedListCreat(FPLR, LOARFile, LRINF);
-			LibraryAdministrator(ALT_Lev1, ALT_Lev2, UINF, RINF, LRINF,FPU, FPR,FPMB,FPPI,FPBNI,FPANI,FPLR,arr_mainfile,len,arr_authorname,arr_bookname,arr_press);
-		}
-		else if (Signin->UL == 2)	SystemAdministrator(ALT_Lev1, ALT_Lev2, UINF, FPU, FPMB, FPPI, FPBNI, FPANI, arr_mainfile, len, arr_authorname, arr_bookname, arr_press);
-		else if (Signin->UL == 1) {
-			FILE* FPR = fopen(PATHR, "ab+");
-			if (FPR == NULL) {
-				printf("Fail to open the file named ReaderInformation:(\n");
-				exit(1);
-			}
-			READER* RINF = (READER*)malloc(sizeof(READER));
-			RINF = READERInformationLinkedListCreat(FPR, ReaderFile, RINF);
-			FILE* FPLR = fopen(PATHLR, "ab+");
-			if (FPLR == NULL) {
-				printf("Fail to open the file named LOARInformation\n");
-				exit(1);
-			}
-			LOAR* LRINF = (LOAR*)malloc(sizeof(LOAR));
-			LRINF = LOARInformationLinkedListCreat(FPLR, LOARFile, LRINF);
-			Reader(ALT_Lev1, ALT_Lev2, Signin->UID, UINF, RINF, LRINF, FPU,FPR,FPLR,FPMB, FPPI, FPBNI, FPANI, arr_mainfile, len, arr_authorname, arr_bookname, arr_press);
-		}
+		fread(root, sizeof(USER), 1, root_info_fp);
+		fclose(root_info_fp);
 	}
-	return 0;
+	/************************************************************/
+	BOOK* main_book_info = NULL;
+	int* len_main_book_info = (int*)malloc(sizeof(int));
+	if (root_info_fp != NULL)main_book_info = readMainBookInfoFromFile(len_main_book_info, main_book_info_file_path);
+	else *len_main_book_info = 0;
+	/************************************************************/
+	MBI* main_book_index = NULL;
+	int* len_main_book_index = (int*)malloc(sizeof(int));
+	if (root_info_fp != NULL)main_book_index = readMainBookIndexFromFile(len_main_book_index, main_book_index_file_path);
+	else *len_main_book_index = 0;
+	/************************************************************/
+	INDEX* book_name_index = NULL;
+	int* len_book_name_index = (int*)malloc(sizeof(int));
+	if (root_info_fp != NULL)book_name_index = readIndexFromFile(len_book_name_index, book_name_index_file_path);
+	else *len_book_name_index = 0;
+	/*************************************************************/
+	INDEX* author_name_index = NULL;
+	int* len_author_name_index = (int*)malloc(sizeof(int));
+	if (root_info_fp != NULL)author_name_index = readIndexFromFile(len_author_name_index, author_name_index_file_path);
+	else *len_author_name_index = 0;
+	/************************************************************/
+	INDEX* press_name_index = NULL;
+	int* len_press_name_index = (int*)malloc(sizeof(int));
+	if (root_info_fp != NULL)press_name_index = readIndexFromFile(len_press_name_index, press_name_index_file_path);
+	else *len_press_name_index = 0;
+	/************************************************************/
+	USER* user_info = (USER*)malloc(sizeof(USER));
+	if (root_info_fp != NULL)user_info = readUserInfoFromFile(user_info_file_path);
+	else user_info = NULL;
+	/************************************************************/
+	USER* sign_in_info = (USER*)malloc(sizeof(USER));
+	if (signIn(user_info, sign_in_info, root) != 0) {
+		int ALT_Lev1 = 0;
+		int ALT_Lev2 = 0;
+		if (sign_in_info->UL == 3) {
+			READER* reader_info = NULL;
+			creatFile(reader_info_file_path);
+			reader_info = readReaderInfoFromFile(reader_info_file_path);
+			LOAR* LOAR_info = NULL;
+			creatFile(lend_out_and_return_info_file_path);
+			LOAR_info = readLendOutAndReturnInfoFromFile(lend_out_and_return_info_file_path);
+			LibraryAdministrator(ALT_Lev1, ALT_Lev2, sign_in_info, user_info, main_book_info, len_main_book_info, author_name_index, len_author_name_index, book_name_index, len_book_name_index, press_name_index, len_press_name_index, main_book_index, len_main_book_index,reader_info, LOAR_info,user_info_file_path,main_book_info_file_path,book_name_index_file_path,author_name_index_file_path,press_name_index_file_path,main_book_index_file_path,reader_info_file_path,lend_out_and_return_info_file_path);
+		}
+		else if (sign_in_info->UL == 2)	SystemAdministrator(ALT_Lev1, ALT_Lev2,root,sign_in_info, user_info, main_book_info, len_main_book_info, author_name_index, len_author_name_index, book_name_index, len_book_name_index, press_name_index, len_press_name_index, main_book_index, len_main_book_index, user_info_file_path,main_book_info_file_path,book_name_index_file_path,author_name_index_file_path,press_name_index_file_path,main_book_index_file_path);
+		else if (sign_in_info->UL == 1) Reader(ALT_Lev1, ALT_Lev2, sign_in_info,user_info,main_book_info,len_main_book_info,author_name_index,len_author_name_index,book_name_index,len_main_book_index,press_name_index,len_press_name_index,main_book_index,len_main_book_index,user_info_file_path,main_book_info_file_path,book_name_index_file_path,author_name_index_file_path,press_name_index_file_path,main_book_index_file_path);
+	}
+	/*else {
+		writeUserInfotoFile(user_info_file_path, user_info);
+		writeMainBookInfoToFile(main_book_info_file_path, main_book_info, len_main_book_info);
+		writeMainBookIndexToFile(main_book_index_file_path, main_book_index, len_main_book_index);
+		writeIndexToFile(book_name_index_file_path, book_name_index, len_book_name_index);
+		writeIndexToFile(author_name_index_file_path, author_name_index, len_author_name_index);
+		writeIndexToFile(press_name_index_file_path, press_name_index, len_press_name_index);
+	}*/
+	root_info_fp = fopen(root_info_path, "wb");
+	if (root != NULL) {
+		fwrite(root, sizeof(USER), 1, root_info_fp);
+		fclose(root_info_fp);
+	}
 }
