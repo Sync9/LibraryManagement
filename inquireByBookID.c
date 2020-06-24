@@ -3,11 +3,12 @@ void inquireByBookID(MBI* index_mainbook, int* indexlen, int bookID, char* path)
 	int recordID = 0;
 	for (int i = 0; i < *indexlen; i++) {
 		if (index_mainbook[i].bookID == bookID) {
-			recordID = index_mainbook[i].bookID;
+			recordID = index_mainbook[i].recordID;
 			break;
 		}
 	}
 	BOOK* res = NULL;
+	printf("%d",recordID);
 	res = BinarySearchForFile(recordID, path);
 	if (res == NULL) printf("The book is not exist\n");
 	else {

@@ -1,6 +1,6 @@
 #include"Header.h"
 BOOK* BinarySearchForFile(int recordID, char* path) {
-	FILE* fp = fopen("D:\\MainBookInfo.dat", "rb");
+	FILE* fp = fopen(path, "rb");
 	if (fp == NULL) {
 		printf("Fail to open %s\n", path);
 		exit(1);
@@ -12,8 +12,9 @@ BOOK* BinarySearchForFile(int recordID, char* path) {
 	}
 	int lo = 1;
 	int hi = getBlockNumber(fp, sizeof(BOOK));
+	int mid=0;
 	while (lo <= hi) {
-		int mid = lo + (hi - lo) / 2;
+		mid = lo + (hi - lo) / 2;
 		fseek(fp, +(long)(mid - 1) * sizeof(BOOK), SEEK_SET);
 		fread(temp, sizeof(BOOK), 1, fp);
 		if (recordID < temp->recordID)hi = mid - 1;
