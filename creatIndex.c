@@ -1,4 +1,4 @@
-//tested
+
 #include"Header.h"
 INDEX* creatIndex(BOOK* arr_mainbookinfo, int* arrlen_mainbookinfo, INDEX* index, int* indexlen, int mode) {
 	INDEX* temp = (INDEX*)malloc(sizeof(INDEX) * *arrlen_mainbookinfo);

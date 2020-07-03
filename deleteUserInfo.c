@@ -13,8 +13,12 @@ void deleteUserInfo(USER* head, USER* infonode) {
 			cur_ptr = cur_ptr->NEXT;
 		}
 		if (cur_ptr == NULL) { 
-			controlFormat();
 			printf("The user isn't exist in the system\n");
+		}
+		else if(cur_ptr==head) {
+			pre_ptr=head;
+			head=head->NEXT;
+			free(pre_ptr);
 		}
 		else pre_ptr->NEXT = cur_ptr->NEXT;
 	}

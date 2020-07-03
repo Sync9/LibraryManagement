@@ -263,7 +263,7 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 						controlFormat();
 						scanf("%9s", info->username);
 						system("reset");
-						deleteReaderInfo(reader_info, info);
+						reader_info=deleteReaderInfo(reader_info, info);
 					}
 					else if (ALT_Lev2 == 4) {
 						Center();
@@ -419,6 +419,8 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 					book_name_index=creatIndex(main_book_info, len_main_book_info, book_name_index, len_book_name_index, 1);
 					author_name_index = creatIndex(main_book_info, len_main_book_info, author_name_index, len_author_name_index, 2);
 					press_name_index = creatIndex(main_book_info, len_main_book_info, press_name_index, len_press_name_index, 3);
+					main_book_index=creatMainBookIndex(main_book_info,len_main_book_info);
+					*len_main_book_index=*len_main_book_info;
 					free(info);
 				}
 				else if (ALT_Lev2 == 2) {
@@ -660,29 +662,42 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 										controlFormat();
 										scanf("%11s", temp->lendout_date);
 										system("reset");
-										CUR->availablebook = CUR->availablebook - 1;
+										CUR->availablebook = (CUR->availablebook) - 1;
 										ptr->lendout = ptr->lendout + 1;
-										LOAR* LOAR_lo_ptr = (LOAR*)malloc(sizeof(LOAR));
-										LOAR* LOAR_hi_ptr = (LOAR*)malloc(sizeof(LOAR));
 										LOAR* LOAR_newnode = (LOAR*)malloc(sizeof(LOAR));
+										if (LOAR_newnode == NULL) {
+											printf("Fail to apply memory\n");
+											exit(1);
+										}
+										LOAR* cur_ptr = (LOAR*)malloc(sizeof(LOAR));	
+										if (cur_ptr == NULL) {
+											printf("Fail to apply memory\n");
+											exit(1);
+										}
+										LOAR* pre_ptr = (LOAR*)malloc(sizeof(LOAR));
+										if (pre_ptr == NULL) {
+											printf("Fail to apply memory\n");
+											exit(1);
+										}
 										LOAR_newnode->next = NULL;
 										LOAR_newnode->bookID = temp->bookID;
 										strcpy(LOAR_newnode->lendout_date, temp->lendout_date);
 										strcpy(LOAR_newnode->return_date, temp->return_date);
 										strcpy(LOAR_newnode->remarks, temp->remarks);
 										strcpy(LOAR_newnode->username, temp->username);
-										LOAR_lo_ptr = LOAR_info;
-										LOAR_hi_ptr = LOAR_info;
-										while (LOAR_hi_ptr) {
-											LOAR_lo_ptr = LOAR_hi_ptr;
-											LOAR_hi_ptr = LOAR_hi_ptr->next;
+										cur_ptr = LOAR_info;
+										pre_ptr = LOAR_info;
+										while (cur_ptr != NULL) {
+											pre_ptr = cur_ptr;
+											cur_ptr = cur_ptr->next;
 										}
-										if (LOAR_lo_ptr == LOAR_hi_ptr) LOAR_info->next = LOAR_newnode;
-										else LOAR_lo_ptr->next = LOAR_newnode;
-										LOAR_newnode->next = LOAR_hi_ptr;
-										free(LOAR_hi_ptr);
-										while (LOAR_lo_ptr) LOAR_lo_ptr = LOAR_lo_ptr->next;
-										free(LOAR_lo_ptr);
+										if (pre_ptr == cur_ptr) LOAR_info = LOAR_newnode;
+										else pre_ptr->next = LOAR_newnode;
+										LOAR_newnode->next = cur_ptr;
+										pre_ptr = NULL;
+										cur_ptr = NULL;
+										free(cur_ptr);
+										free(pre_ptr);
 										free(temp);
 									}
 									else {
@@ -774,8 +789,9 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 								controlFormat();
 								printf("Any remarks?\n");
 								controlFormat();
-								printf("1.Yes\n2.No\n");
-								Center();
+								printf("1.Yes\n");
+								controlFormat();
+								printf("2.No\n");
 								controlFormat();
 								Astrisk();
 								controlFormat();

@@ -26,7 +26,9 @@ int signIn(USER* head,USER* signin,USER* root) {
 		controlFormat();
 		printf("Your Password\n");
 		controlFormat();
+		system("stty -echo");
 		scanf("%9s",signin->passwd);
+		system("stty echo");
 		controlFormat();
 		Astrisk();
 		system("reset");

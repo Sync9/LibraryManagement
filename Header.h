@@ -77,7 +77,7 @@ void deleteUserInfo(USER* head, USER* infonode);
 /*************************ReaderManagement****************************/
 READER* inputReaderInfo(READER* head, READER* infonode);
 void modifyReaderInfo(READER* head, READER* infonode);
-void deleteReaderInfo(READER* head, READER* infonode);
+READER* deleteReaderInfo(READER* head, READER* infonode);
 void inquireReaderInfo(READER* head, READER* infonode);
 void displayReaderInfo(READER* head);
 /************************BookManagement*******************************/
@@ -97,4 +97,5 @@ void Center();
 void creatFile(char* path);
 /************************Index*****************************************/
 INDEX* creatIndex(BOOK* arr_mainbookinfo, int* arrlen_mainbookinfo, INDEX* index, int* indexlen, int mode); 
+MBI* creatMainBookIndex(BOOK* arr, int* arrlen);
 void creatMainBookInfoPointer(BOOK* arr_mainbookinfo, int* arrlen_mainbookinfo);
