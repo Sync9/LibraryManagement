@@ -437,6 +437,9 @@ void LibraryAdministrator(int ALT_Lev1, int ALT_Lev2, USER* sign_in_info, USER* 
 								controlFormat();
 								Astrisk();
 								controlFormat();
+								printf("Please input the bookID you want to modify\n");
+								controlFormat();
+								scanf("%d",&info->bookID);
 								printf("Please input the number of the book lent out\n");
 								controlFormat();
 								printf("The number of the book lent out couldn't be negative\n");
